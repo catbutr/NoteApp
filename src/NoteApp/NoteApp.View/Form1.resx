@@ -118,38 +118,38 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="pictureBox1.InitialImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+  <data name="pictureBox1.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
-        iVBORw0KGgoAAAANSUhEUgAAAB4AAAAaCAMAAACXfxyGAAAABGdBTUEAALGPC/xhBQAAALpQTFRF1Hx9
-        14eI9+np/////vz84qeo0nZ33JaX89zc+vLy03p7/fr64KOj0nh57svL1oKD9eDh57a36Lq68tjY2Y2O
-        +u/w7MfH356f/Pj43ZiZ/Pb25K2u5bKy9+fn2YuM+e3t3pyd2o+Q1H5/89ra8NTU9N7f2ImK6sDB7s3N
-        +/T06b6/5bCw57i54qmq8NHS4KKi1YGC03t81YKC8dbW25OT4KCh4aWl46us3pqb7cnJ1YCB1oWF+Ovr
-        25SUlYAZbgAAAAlwSFlzAAAOwwAADsMBx2+oZAAAATRJREFUOE91kttawjAQhBc2DActBQ+0gi0oVhSx
-        oogg6Pu/ljksNcHPuelk/qbdZJeoVud/pBqgJqglyyO1m+jQySmirgSB6jXEPWLuA2cSeTonXFyyxjyI
-        0FAurKSzJGWLzZtXQ5uK1Ai4Njss5ixGPrbOKp0gGljnMLdvdB3OMo9z3E6dFWw20J2zRYz7w10csPld
-        NDPmoYPmo420Ksw8B54UL4Dn32N4mMsOJi/AXJZGPuZiCbxKBU4Bzt6AZdAhH6/0Pb6D5ExWHp5FWKfq
-        I+hQhdUG6BujS1/YxOiAh9tq16fXIcH1HLtqKqZUXYzDrR1yr+Jsj/zLOou7EbZBQ02HCmMM1uOyORqH
-        NAGV+kmcrqUXgcxA6JT0d2glWaAZMFIUY59JcKSSkBC+27L8o16MH8auF9cxzbIFAAAAAElFTkSuQmCC
+        Qk32AgAAAAAAADYAAAAoAAAADgAAABAAAAABABgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+        AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACEgoTGw8bGw8bGw8bGw8bGw8bGw8bG
+        w8bGw8bGw8bGw8bGw8bGw8YAAAAAAISChP///////////////////////////////////////////8bD
+        xgAAAAAAhIKE////////////////////////////////////////////xsPGAAAAAACEgoT/////////
+        ///////////////////////////////////Gw8YAAAAAAISChP//////////////////////////////
+        /////////////8bDxgAAAAAAhIKE////////////AAD/AAD/////////AAD/AAD/////////xsPGAAAA
+        AACEgoT///////////////8AAP8AAP8AAP8AAP/////////////Gw8YAAAAAAISChP//////////////
+        /////wAA/wAA/////////////////8bDxgAAAAAAhIKE////////////////AAD/AAD/AAD/AAD/////
+        ////////xsPGAAAAAACEgoT///////////8AAP8AAP////////8AAP8AAP/////////Gw8YAAAAAAISC
+        hP///////////////////////////////////////////8bDxgAAAAAAhIKE////////////////////
+        ////////////////////////xsPGAAAAAACEgoT/////////////////////////////////////////
+        ///Gw8YAAAAAAISChP///////////////////////////////////////////8bDxgAAAAAAhIKEhIKE
+        hIKEhIKEhIKEhIKEhIKEhIKEhIKEhIKEhIKEhIKEhIKEhIKEAAA=
 </value>
   </data>
-  <data name="editNotePicturebox.InitialImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+  <data name="editNotePicturebox.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
-        iVBORw0KGgoAAAANSUhEUgAAAB4AAAAaCAMAAACXfxyGAAAABGdBTUEAALGPC/xhBQAAAJNQTFRF////
-        /P7+yu3rmtzZddDMYMnEWcfCXsjDl9zYze7sw+rocM7KaMzHwOno9/z8jdjVitfU9Pv7eNHNc8/L8fr6
-        h9bTnN3a0vDu1fDvn97bhdXSuOflfdPP5/f26vf3gNTQtubk+f39ZsvGY8rFvenn7/n5qeLfa83I3/Tz
-        4vX0ruPhq+LggtXR7Pj4sOTiu+jmyOzqR1ON2QAAAAlwSFlzAAAOwwAADsMBx2+oZAAAAO5JREFUOE+t
-        kscSwjAMRGUIMSUETOi911D+/+uQ0GKcEzMM77S7monldehfmFI5qsQ2qtYMkpB6I36TNJF50hZGStsh
-        V1wH+Zusi4lgehLZ/sCRG46smHGwwESC6QxuvhC7hCNardkuUjheROYbf/xW3A5G6G442cKQbL2HVvac
-        tKDpwOYIrZw4OUAT67jYlJEI+ts4YX2CVuTjCTS12ZyhlQsnfjVpZR22XLyYq7DrfU7XWj41ndnG+RXu
-        OhV7g2PMK7CjYeqfJA+vssskCsjCjnmeI1fG4XO/uMvtlcQvHbB6VCMrv2Kp2OCvED0BDYgOuP/0Rv8A
-        AAAASUVORK5CYII=
-</value>
-  </data>
-  <data name="newNotePicturebox.InitialImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        iVBORw0KGgoAAAANSUhEUgAAAB4AAAAaBAMAAABSj/GHAAAABGdBTUEAALGPC/xhBQAAAAxQTFRF////
-        wfTGheqOou6pF0hyegAAAAlwSFlzAAAOwwAADsMBx2+oZAAAACZJREFUKM9jgABGJUUGZDB4+YJgIKyk
-        DGEwKKECgnx0/YPavwwMAAX1DdfWmFIFAAAAAElFTkSuQmCC
+        Qk32AgAAAAAAADYAAAAoAAAADgAAABAAAAABABgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+        AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACEgoTGw8bGw8bGw8bGw8bGw8bGw8bG
+        w8bGw8bGw8bGw8bGw8bGw8YAAAAAAISChP///////////////////////////////////////////8bD
+        xgAAAAAAhIKE////////////////////////////////////////////xsPGAAAAAACEgoT/////////
+        ///////////////////////////////////Gw8YAAAAAAISChP//////////////////////////////
+        /////////////8bDxgAAAAAAhIKE////////////AAD/AAD/////////AAD/AAD/////////xsPGAAAA
+        AACEgoT///////////////8AAP8AAP8AAP8AAP/////////////Gw8YAAAAAAISChP//////////////
+        /////wAA/wAA/////////////////8bDxgAAAAAAhIKE////////////////AAD/AAD/AAD/AAD/////
+        ////////xsPGAAAAAACEgoT///////////8AAP8AAP////////8AAP8AAP/////////Gw8YAAAAAAISC
+        hP///////////////////////////////////////////8bDxgAAAAAAhIKE////////////////////
+        ////////////////////////xsPGAAAAAACEgoT/////////////////////////////////////////
+        ///Gw8YAAAAAAISChP///////////////////////////////////////////8bDxgAAAAAAhIKEhIKE
+        hIKEhIKEhIKEhIKEhIKEhIKEhIKEhIKEhIKEhIKEhIKEhIKEAAA=
 </value>
   </data>
   <data name="noteRichTextbox.Text" xml:space="preserve">

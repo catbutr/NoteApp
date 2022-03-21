@@ -30,6 +30,15 @@ namespace NoteApp.View
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
+            System.Windows.Forms.ListViewItem listViewItem1 = new System.Windows.Forms.ListViewItem("1\\n");
+            System.Windows.Forms.ListViewItem listViewItem2 = new System.Windows.Forms.ListViewItem("2");
+            System.Windows.Forms.ListViewItem listViewItem3 = new System.Windows.Forms.ListViewItem("3");
+            System.Windows.Forms.ListViewItem listViewItem4 = new System.Windows.Forms.ListViewItem("4");
+            System.Windows.Forms.ListViewItem listViewItem5 = new System.Windows.Forms.ListViewItem("5");
+            System.Windows.Forms.ListViewItem listViewItem6 = new System.Windows.Forms.ListViewItem("6");
+            System.Windows.Forms.ListViewItem listViewItem7 = new System.Windows.Forms.ListViewItem("7");
+            System.Windows.Forms.ListViewItem listViewItem8 = new System.Windows.Forms.ListViewItem("8");
+            System.Windows.Forms.ListViewItem listViewItem9 = new System.Windows.Forms.ListViewItem("");
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.editNotePicturebox = new System.Windows.Forms.PictureBox();
@@ -45,6 +54,7 @@ namespace NoteApp.View
             this.CategoryNameLabel = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.TitleLabel = new System.Windows.Forms.Label();
+            this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -85,7 +95,9 @@ namespace NoteApp.View
             // 
             // pictureBox1
             // 
-            this.pictureBox1.InitialImage = ((System.Drawing.Image)(resources.GetObject("pictureBox1.InitialImage")));
+            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
+            this.pictureBox1.ImageLocation = "E:\\NoteApp\\src\\NoteApp\\NoteApp.View\\Delete.png";
+            this.pictureBox1.InitialImage = null;
             this.pictureBox1.Location = new System.Drawing.Point(88, 626);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(30, 26);
@@ -94,7 +106,9 @@ namespace NoteApp.View
             // 
             // editNotePicturebox
             // 
-            this.editNotePicturebox.InitialImage = ((System.Drawing.Image)(resources.GetObject("editNotePicturebox.InitialImage")));
+            this.editNotePicturebox.Image = ((System.Drawing.Image)(resources.GetObject("editNotePicturebox.Image")));
+            this.editNotePicturebox.ImageLocation = "E:\\NoteApp\\src\\NoteApp\\NoteApp.View\\Edit.png";
+            this.editNotePicturebox.InitialImage = null;
             this.editNotePicturebox.Location = new System.Drawing.Point(52, 626);
             this.editNotePicturebox.Name = "editNotePicturebox";
             this.editNotePicturebox.Size = new System.Drawing.Size(30, 26);
@@ -103,7 +117,8 @@ namespace NoteApp.View
             // 
             // newNotePicturebox
             // 
-            this.newNotePicturebox.InitialImage = ((System.Drawing.Image)(resources.GetObject("newNotePicturebox.InitialImage")));
+            this.newNotePicturebox.ImageLocation = "E:\\NoteApp\\src\\NoteApp\\NoteApp.View\\Add.png";
+            this.newNotePicturebox.InitialImage = null;
             this.newNotePicturebox.Location = new System.Drawing.Point(16, 626);
             this.newNotePicturebox.Name = "newNotePicturebox";
             this.newNotePicturebox.Size = new System.Drawing.Size(30, 26);
@@ -133,13 +148,26 @@ namespace NoteApp.View
             this.noteListView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.noteListView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeader1});
             this.noteListView.Font = new System.Drawing.Font("Bahnschrift", 18F);
             this.noteListView.HideSelection = false;
+            this.noteListView.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
+            listViewItem1,
+            listViewItem2,
+            listViewItem3,
+            listViewItem4,
+            listViewItem5,
+            listViewItem6,
+            listViewItem7,
+            listViewItem8,
+            listViewItem9});
             this.noteListView.Location = new System.Drawing.Point(3, 56);
             this.noteListView.Name = "noteListView";
             this.noteListView.Size = new System.Drawing.Size(311, 515);
             this.noteListView.TabIndex = 8;
             this.noteListView.UseCompatibleStateImageBehavior = false;
+            this.noteListView.View = System.Windows.Forms.View.List;
             // 
             // noteRichTextbox
             // 
@@ -257,6 +285,7 @@ namespace NoteApp.View
         private System.Windows.Forms.ComboBox categoryComboBox;
         private System.Windows.Forms.Label showCategoryLabel;
         private System.Windows.Forms.ListView noteListView;
+        private System.Windows.Forms.ColumnHeader columnHeader1;
     }
 }
 
