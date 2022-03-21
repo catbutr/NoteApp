@@ -31,6 +31,13 @@ namespace NoteApp.View
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.editNotePicturebox = new System.Windows.Forms.PictureBox();
+            this.newNotePicturebox = new System.Windows.Forms.PictureBox();
+            this.categoryComboBox = new System.Windows.Forms.ComboBox();
+            this.showCategoryLabel = new System.Windows.Forms.Label();
+            this.noteListView = new System.Windows.Forms.ListView();
+            this.noteRichTextbox = new System.Windows.Forms.RichTextBox();
             this.dateTimePickerUpdated = new System.Windows.Forms.DateTimePicker();
             this.dateTimePickerCreated = new System.Windows.Forms.DateTimePicker();
             this.label2 = new System.Windows.Forms.Label();
@@ -38,20 +45,13 @@ namespace NoteApp.View
             this.CategoryNameLabel = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.TitleLabel = new System.Windows.Forms.Label();
-            this.noteRichTextbox = new System.Windows.Forms.RichTextBox();
-            this.noteListView = new System.Windows.Forms.ListView();
-            this.showCategoryLabel = new System.Windows.Forms.Label();
-            this.categoryComboBox = new System.Windows.Forms.ComboBox();
-            this.newNotePicturebox = new System.Windows.Forms.PictureBox();
-            this.editNotePicturebox = new System.Windows.Forms.PictureBox();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.newNotePicturebox)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.editNotePicturebox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.editNotePicturebox)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.newNotePicturebox)).BeginInit();
             this.SuspendLayout();
             // 
             // splitContainer1
@@ -82,6 +82,77 @@ namespace NoteApp.View
             this.splitContainer1.Size = new System.Drawing.Size(953, 664);
             this.splitContainer1.SplitterDistance = 317;
             this.splitContainer1.TabIndex = 0;
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.InitialImage = ((System.Drawing.Image)(resources.GetObject("pictureBox1.InitialImage")));
+            this.pictureBox1.Location = new System.Drawing.Point(88, 626);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(30, 26);
+            this.pictureBox1.TabIndex = 12;
+            this.pictureBox1.TabStop = false;
+            // 
+            // editNotePicturebox
+            // 
+            this.editNotePicturebox.InitialImage = ((System.Drawing.Image)(resources.GetObject("editNotePicturebox.InitialImage")));
+            this.editNotePicturebox.Location = new System.Drawing.Point(52, 626);
+            this.editNotePicturebox.Name = "editNotePicturebox";
+            this.editNotePicturebox.Size = new System.Drawing.Size(30, 26);
+            this.editNotePicturebox.TabIndex = 11;
+            this.editNotePicturebox.TabStop = false;
+            // 
+            // newNotePicturebox
+            // 
+            this.newNotePicturebox.InitialImage = ((System.Drawing.Image)(resources.GetObject("newNotePicturebox.InitialImage")));
+            this.newNotePicturebox.Location = new System.Drawing.Point(16, 626);
+            this.newNotePicturebox.Name = "newNotePicturebox";
+            this.newNotePicturebox.Size = new System.Drawing.Size(30, 26);
+            this.newNotePicturebox.TabIndex = 8;
+            this.newNotePicturebox.TabStop = false;
+            // 
+            // categoryComboBox
+            // 
+            this.categoryComboBox.FormattingEnabled = true;
+            this.categoryComboBox.Location = new System.Drawing.Point(107, 26);
+            this.categoryComboBox.Name = "categoryComboBox";
+            this.categoryComboBox.Size = new System.Drawing.Size(121, 21);
+            this.categoryComboBox.TabIndex = 10;
+            // 
+            // showCategoryLabel
+            // 
+            this.showCategoryLabel.AutoSize = true;
+            this.showCategoryLabel.Font = new System.Drawing.Font("Bahnschrift", 12F);
+            this.showCategoryLabel.Location = new System.Drawing.Point(12, 28);
+            this.showCategoryLabel.Name = "showCategoryLabel";
+            this.showCategoryLabel.Size = new System.Drawing.Size(89, 19);
+            this.showCategoryLabel.TabIndex = 9;
+            this.showCategoryLabel.Text = "Категория:";
+            // 
+            // noteListView
+            // 
+            this.noteListView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.noteListView.Font = new System.Drawing.Font("Bahnschrift", 18F);
+            this.noteListView.HideSelection = false;
+            this.noteListView.Location = new System.Drawing.Point(3, 56);
+            this.noteListView.Name = "noteListView";
+            this.noteListView.Size = new System.Drawing.Size(311, 515);
+            this.noteListView.TabIndex = 8;
+            this.noteListView.UseCompatibleStateImageBehavior = false;
+            // 
+            // noteRichTextbox
+            // 
+            this.noteRichTextbox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.noteRichTextbox.Font = new System.Drawing.Font("Bahnschrift", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.noteRichTextbox.Location = new System.Drawing.Point(23, 117);
+            this.noteRichTextbox.Name = "noteRichTextbox";
+            this.noteRichTextbox.ReadOnly = true;
+            this.noteRichTextbox.Size = new System.Drawing.Size(597, 535);
+            this.noteRichTextbox.TabIndex = 7;
+            this.noteRichTextbox.Text = resources.GetString("noteRichTextbox.Text");
             // 
             // dateTimePickerUpdated
             // 
@@ -148,71 +219,6 @@ namespace NoteApp.View
             this.TitleLabel.TabIndex = 0;
             this.TitleLabel.Text = "Название заметки";
             // 
-            // noteRichTextbox
-            // 
-            this.noteRichTextbox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.noteRichTextbox.Font = new System.Drawing.Font("Bahnschrift", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.noteRichTextbox.Location = new System.Drawing.Point(23, 117);
-            this.noteRichTextbox.Name = "noteRichTextbox";
-            this.noteRichTextbox.ReadOnly = true;
-            this.noteRichTextbox.Size = new System.Drawing.Size(597, 535);
-            this.noteRichTextbox.TabIndex = 7;
-            this.noteRichTextbox.Text = resources.GetString("noteRichTextbox.Text");
-            // 
-            // noteListView
-            // 
-            this.noteListView.Font = new System.Drawing.Font("Bahnschrift", 18F);
-            this.noteListView.HideSelection = false;
-            this.noteListView.Location = new System.Drawing.Point(3, 56);
-            this.noteListView.Name = "noteListView";
-            this.noteListView.Size = new System.Drawing.Size(311, 450);
-            this.noteListView.TabIndex = 8;
-            this.noteListView.UseCompatibleStateImageBehavior = false;
-            // 
-            // showCategoryLabel
-            // 
-            this.showCategoryLabel.AutoSize = true;
-            this.showCategoryLabel.Font = new System.Drawing.Font("Bahnschrift", 12F);
-            this.showCategoryLabel.Location = new System.Drawing.Point(12, 28);
-            this.showCategoryLabel.Name = "showCategoryLabel";
-            this.showCategoryLabel.Size = new System.Drawing.Size(89, 19);
-            this.showCategoryLabel.TabIndex = 9;
-            this.showCategoryLabel.Text = "Категория:";
-            // 
-            // categoryComboBox
-            // 
-            this.categoryComboBox.FormattingEnabled = true;
-            this.categoryComboBox.Location = new System.Drawing.Point(107, 26);
-            this.categoryComboBox.Name = "categoryComboBox";
-            this.categoryComboBox.Size = new System.Drawing.Size(121, 21);
-            this.categoryComboBox.TabIndex = 10;
-            // 
-            // newNotePicturebox
-            // 
-            this.newNotePicturebox.Location = new System.Drawing.Point(16, 626);
-            this.newNotePicturebox.Name = "newNotePicturebox";
-            this.newNotePicturebox.Size = new System.Drawing.Size(30, 26);
-            this.newNotePicturebox.TabIndex = 8;
-            this.newNotePicturebox.TabStop = false;
-            // 
-            // editNotePicturebox
-            // 
-            this.editNotePicturebox.Location = new System.Drawing.Point(52, 626);
-            this.editNotePicturebox.Name = "editNotePicturebox";
-            this.editNotePicturebox.Size = new System.Drawing.Size(30, 26);
-            this.editNotePicturebox.TabIndex = 11;
-            this.editNotePicturebox.TabStop = false;
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Location = new System.Drawing.Point(88, 626);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(30, 26);
-            this.pictureBox1.TabIndex = 12;
-            this.pictureBox1.TabStop = false;
-            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -227,9 +233,9 @@ namespace NoteApp.View
             this.splitContainer1.Panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.newNotePicturebox)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.editNotePicturebox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.editNotePicturebox)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.newNotePicturebox)).EndInit();
             this.ResumeLayout(false);
 
         }
