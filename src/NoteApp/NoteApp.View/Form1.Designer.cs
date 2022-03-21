@@ -30,15 +30,15 @@ namespace NoteApp.View
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
-            System.Windows.Forms.ListViewItem listViewItem1 = new System.Windows.Forms.ListViewItem("1\\n");
-            System.Windows.Forms.ListViewItem listViewItem2 = new System.Windows.Forms.ListViewItem("2");
-            System.Windows.Forms.ListViewItem listViewItem3 = new System.Windows.Forms.ListViewItem("3");
-            System.Windows.Forms.ListViewItem listViewItem4 = new System.Windows.Forms.ListViewItem("4");
-            System.Windows.Forms.ListViewItem listViewItem5 = new System.Windows.Forms.ListViewItem("5");
-            System.Windows.Forms.ListViewItem listViewItem6 = new System.Windows.Forms.ListViewItem("6");
-            System.Windows.Forms.ListViewItem listViewItem7 = new System.Windows.Forms.ListViewItem("7");
-            System.Windows.Forms.ListViewItem listViewItem8 = new System.Windows.Forms.ListViewItem("8");
-            System.Windows.Forms.ListViewItem listViewItem9 = new System.Windows.Forms.ListViewItem("");
+            System.Windows.Forms.ListViewItem listViewItem10 = new System.Windows.Forms.ListViewItem("1\\n");
+            System.Windows.Forms.ListViewItem listViewItem11 = new System.Windows.Forms.ListViewItem("2");
+            System.Windows.Forms.ListViewItem listViewItem12 = new System.Windows.Forms.ListViewItem("3");
+            System.Windows.Forms.ListViewItem listViewItem13 = new System.Windows.Forms.ListViewItem("4");
+            System.Windows.Forms.ListViewItem listViewItem14 = new System.Windows.Forms.ListViewItem("5");
+            System.Windows.Forms.ListViewItem listViewItem15 = new System.Windows.Forms.ListViewItem("6");
+            System.Windows.Forms.ListViewItem listViewItem16 = new System.Windows.Forms.ListViewItem("7");
+            System.Windows.Forms.ListViewItem listViewItem17 = new System.Windows.Forms.ListViewItem("8");
+            System.Windows.Forms.ListViewItem listViewItem18 = new System.Windows.Forms.ListViewItem("");
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.editNotePicturebox = new System.Windows.Forms.PictureBox();
@@ -55,6 +55,15 @@ namespace NoteApp.View
             this.label1 = new System.Windows.Forms.Label();
             this.TitleLabel = new System.Windows.Forms.Label();
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.editToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ExitItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.AddStripItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.EditStripItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.RemoveStripItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.AboutStripItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -62,12 +71,13 @@ namespace NoteApp.View
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.editNotePicturebox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.newNotePicturebox)).BeginInit();
+            this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // splitContainer1
             // 
             this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.splitContainer1.Location = new System.Drawing.Point(0, 0);
+            this.splitContainer1.Location = new System.Drawing.Point(0, 24);
             this.splitContainer1.Name = "splitContainer1";
             // 
             // splitContainer1.Panel1
@@ -89,16 +99,17 @@ namespace NoteApp.View
             this.splitContainer1.Panel2.Controls.Add(this.CategoryNameLabel);
             this.splitContainer1.Panel2.Controls.Add(this.label1);
             this.splitContainer1.Panel2.Controls.Add(this.TitleLabel);
-            this.splitContainer1.Size = new System.Drawing.Size(953, 664);
+            this.splitContainer1.Size = new System.Drawing.Size(953, 640);
             this.splitContainer1.SplitterDistance = 317;
             this.splitContainer1.TabIndex = 0;
             // 
             // pictureBox1
             // 
+            this.pictureBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
             this.pictureBox1.ImageLocation = "E:\\NoteApp\\src\\NoteApp\\NoteApp.View\\Delete.png";
             this.pictureBox1.InitialImage = null;
-            this.pictureBox1.Location = new System.Drawing.Point(88, 626);
+            this.pictureBox1.Location = new System.Drawing.Point(88, 602);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(30, 26);
             this.pictureBox1.TabIndex = 12;
@@ -106,10 +117,11 @@ namespace NoteApp.View
             // 
             // editNotePicturebox
             // 
+            this.editNotePicturebox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.editNotePicturebox.Image = ((System.Drawing.Image)(resources.GetObject("editNotePicturebox.Image")));
             this.editNotePicturebox.ImageLocation = "E:\\NoteApp\\src\\NoteApp\\NoteApp.View\\Edit.png";
             this.editNotePicturebox.InitialImage = null;
-            this.editNotePicturebox.Location = new System.Drawing.Point(52, 626);
+            this.editNotePicturebox.Location = new System.Drawing.Point(52, 602);
             this.editNotePicturebox.Name = "editNotePicturebox";
             this.editNotePicturebox.Size = new System.Drawing.Size(30, 26);
             this.editNotePicturebox.TabIndex = 11;
@@ -117,18 +129,20 @@ namespace NoteApp.View
             // 
             // newNotePicturebox
             // 
+            this.newNotePicturebox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.newNotePicturebox.ImageLocation = "E:\\NoteApp\\src\\NoteApp\\NoteApp.View\\Add.png";
             this.newNotePicturebox.InitialImage = null;
-            this.newNotePicturebox.Location = new System.Drawing.Point(16, 626);
+            this.newNotePicturebox.Location = new System.Drawing.Point(16, 602);
             this.newNotePicturebox.Name = "newNotePicturebox";
             this.newNotePicturebox.Size = new System.Drawing.Size(30, 26);
             this.newNotePicturebox.TabIndex = 8;
             this.newNotePicturebox.TabStop = false;
+            this.newNotePicturebox.Click += new System.EventHandler(this.newNotePicturebox_Click);
             // 
             // categoryComboBox
             // 
             this.categoryComboBox.FormattingEnabled = true;
-            this.categoryComboBox.Location = new System.Drawing.Point(107, 26);
+            this.categoryComboBox.Location = new System.Drawing.Point(107, 18);
             this.categoryComboBox.Name = "categoryComboBox";
             this.categoryComboBox.Size = new System.Drawing.Size(121, 21);
             this.categoryComboBox.TabIndex = 10;
@@ -137,7 +151,7 @@ namespace NoteApp.View
             // 
             this.showCategoryLabel.AutoSize = true;
             this.showCategoryLabel.Font = new System.Drawing.Font("Bahnschrift", 12F);
-            this.showCategoryLabel.Location = new System.Drawing.Point(12, 28);
+            this.showCategoryLabel.Location = new System.Drawing.Point(12, 20);
             this.showCategoryLabel.Name = "showCategoryLabel";
             this.showCategoryLabel.Size = new System.Drawing.Size(89, 19);
             this.showCategoryLabel.TabIndex = 9;
@@ -153,18 +167,18 @@ namespace NoteApp.View
             this.noteListView.Font = new System.Drawing.Font("Bahnschrift", 18F);
             this.noteListView.HideSelection = false;
             this.noteListView.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
-            listViewItem1,
-            listViewItem2,
-            listViewItem3,
-            listViewItem4,
-            listViewItem5,
-            listViewItem6,
-            listViewItem7,
-            listViewItem8,
-            listViewItem9});
-            this.noteListView.Location = new System.Drawing.Point(3, 56);
+            listViewItem10,
+            listViewItem11,
+            listViewItem12,
+            listViewItem13,
+            listViewItem14,
+            listViewItem15,
+            listViewItem16,
+            listViewItem17,
+            listViewItem18});
+            this.noteListView.Location = new System.Drawing.Point(3, 48);
             this.noteListView.Name = "noteListView";
-            this.noteListView.Size = new System.Drawing.Size(311, 515);
+            this.noteListView.Size = new System.Drawing.Size(311, 491);
             this.noteListView.TabIndex = 8;
             this.noteListView.UseCompatibleStateImageBehavior = false;
             this.noteListView.View = System.Windows.Forms.View.List;
@@ -178,12 +192,13 @@ namespace NoteApp.View
             this.noteRichTextbox.Location = new System.Drawing.Point(23, 117);
             this.noteRichTextbox.Name = "noteRichTextbox";
             this.noteRichTextbox.ReadOnly = true;
-            this.noteRichTextbox.Size = new System.Drawing.Size(597, 535);
+            this.noteRichTextbox.Size = new System.Drawing.Size(597, 511);
             this.noteRichTextbox.TabIndex = 7;
             this.noteRichTextbox.Text = resources.GetString("noteRichTextbox.Text");
             // 
             // dateTimePickerUpdated
             // 
+            this.dateTimePickerUpdated.Enabled = false;
             this.dateTimePickerUpdated.ImeMode = System.Windows.Forms.ImeMode.Off;
             this.dateTimePickerUpdated.Location = new System.Drawing.Point(336, 91);
             this.dateTimePickerUpdated.Name = "dateTimePickerUpdated";
@@ -192,6 +207,7 @@ namespace NoteApp.View
             // 
             // dateTimePickerCreated
             // 
+            this.dateTimePickerCreated.Enabled = false;
             this.dateTimePickerCreated.Location = new System.Drawing.Point(100, 91);
             this.dateTimePickerCreated.Name = "dateTimePickerCreated";
             this.dateTimePickerCreated.Size = new System.Drawing.Size(129, 20);
@@ -247,12 +263,84 @@ namespace NoteApp.View
             this.TitleLabel.TabIndex = 0;
             this.TitleLabel.Text = "Название заметки";
             // 
+            // menuStrip1
+            // 
+            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.fileToolStripMenuItem,
+            this.editToolStripMenuItem,
+            this.helpToolStripMenuItem});
+            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
+            this.menuStrip1.Name = "menuStrip1";
+            this.menuStrip1.Size = new System.Drawing.Size(953, 24);
+            this.menuStrip1.TabIndex = 1;
+            this.menuStrip1.Text = "menuStrip1";
+            // 
+            // fileToolStripMenuItem
+            // 
+            this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.ExitItem});
+            this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
+            this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
+            this.fileToolStripMenuItem.Text = "File";
+            // 
+            // editToolStripMenuItem
+            // 
+            this.editToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.AddStripItem,
+            this.EditStripItem,
+            this.RemoveStripItem});
+            this.editToolStripMenuItem.Name = "editToolStripMenuItem";
+            this.editToolStripMenuItem.Size = new System.Drawing.Size(39, 20);
+            this.editToolStripMenuItem.Text = "Edit";
+            // 
+            // helpToolStripMenuItem
+            // 
+            this.helpToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.AboutStripItem});
+            this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
+            this.helpToolStripMenuItem.Size = new System.Drawing.Size(44, 20);
+            this.helpToolStripMenuItem.Text = "Help";
+            // 
+            // ExitItem
+            // 
+            this.ExitItem.Name = "ExitItem";
+            this.ExitItem.Size = new System.Drawing.Size(180, 22);
+            this.ExitItem.Text = "Exit";
+            // 
+            // AddStripItem
+            // 
+            this.AddStripItem.Name = "AddStripItem";
+            this.AddStripItem.Size = new System.Drawing.Size(180, 22);
+            this.AddStripItem.Text = "Add Note";
+            this.AddStripItem.Click += new System.EventHandler(this.AddStripItem_Click);
+            // 
+            // EditStripItem
+            // 
+            this.EditStripItem.Name = "EditStripItem";
+            this.EditStripItem.Size = new System.Drawing.Size(180, 22);
+            this.EditStripItem.Text = "Edit Note";
+            // 
+            // RemoveStripItem
+            // 
+            this.RemoveStripItem.Name = "RemoveStripItem";
+            this.RemoveStripItem.Size = new System.Drawing.Size(180, 22);
+            this.RemoveStripItem.Text = "Remove Note";
+            // 
+            // AboutStripItem
+            // 
+            this.AboutStripItem.Name = "AboutStripItem";
+            this.AboutStripItem.Size = new System.Drawing.Size(180, 22);
+            this.AboutStripItem.Text = "About";
+            this.AboutStripItem.Click += new System.EventHandler(this.AboutStripItem_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(953, 664);
             this.Controls.Add(this.splitContainer1);
+            this.Controls.Add(this.menuStrip1);
+            this.MainMenuStrip = this.menuStrip1;
             this.Name = "MainForm";
             this.Text = "MainForm";
             this.splitContainer1.Panel1.ResumeLayout(false);
@@ -264,7 +352,10 @@ namespace NoteApp.View
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.editNotePicturebox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.newNotePicturebox)).EndInit();
+            this.menuStrip1.ResumeLayout(false);
+            this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -286,6 +377,15 @@ namespace NoteApp.View
         private System.Windows.Forms.Label showCategoryLabel;
         private System.Windows.Forms.ListView noteListView;
         private System.Windows.Forms.ColumnHeader columnHeader1;
+        private System.Windows.Forms.MenuStrip menuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem editToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem helpToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem ExitItem;
+        private System.Windows.Forms.ToolStripMenuItem AddStripItem;
+        private System.Windows.Forms.ToolStripMenuItem EditStripItem;
+        private System.Windows.Forms.ToolStripMenuItem RemoveStripItem;
+        private System.Windows.Forms.ToolStripMenuItem AboutStripItem;
     }
 }
 

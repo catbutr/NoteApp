@@ -16,5 +16,23 @@ namespace NoteApp.View
         {
             InitializeComponent();
         }
+
+        private void newNotePicturebox_Click(object sender, EventArgs e)
+        {
+            Form ifrm = new NewNoteForm();
+            ifrm.ShowDialog();
+        }
+
+        private void AddStripItem_Click(object sender, EventArgs e)
+        {
+            Form ifrm = new NewNoteForm();
+            ifrm.ShowDialog();
+        }
+
+        private void AboutStripItem_Click(object sender, EventArgs e)
+        {
+            Form ifrm = new AboutForm();
+            ifrm.ShowDialog();
+        }
     }
 }
