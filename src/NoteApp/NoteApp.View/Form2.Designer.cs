@@ -88,6 +88,9 @@ namespace NoteApp.View
             // 
             // noteNameTextbox
             // 
+            this.noteNameTextbox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.noteNameTextbox.Location = new System.Drawing.Point(105, 8);
             this.noteNameTextbox.Name = "noteNameTextbox";
             this.noteNameTextbox.Size = new System.Drawing.Size(683, 20);
