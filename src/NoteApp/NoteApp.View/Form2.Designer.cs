@@ -38,12 +38,14 @@ namespace NoteApp.View
             this.noteCategoryLabel = new System.Windows.Forms.Label();
             this.newNoteCategoryCombobox = new System.Windows.Forms.ComboBox();
             this.newNoteRichTextbox = new System.Windows.Forms.RichTextBox();
+            this.okButton = new System.Windows.Forms.Button();
+            this.cancelButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // dateTimePickerCreated
             // 
             this.dateTimePickerCreated.Enabled = false;
-            this.dateTimePickerCreated.Location = new System.Drawing.Point(94, 75);
+            this.dateTimePickerCreated.Location = new System.Drawing.Point(56, 73);
             this.dateTimePickerCreated.Name = "dateTimePickerCreated";
             this.dateTimePickerCreated.Size = new System.Drawing.Size(129, 20);
             this.dateTimePickerCreated.TabIndex = 9;
@@ -51,27 +53,27 @@ namespace NoteApp.View
             // CategoryUpdatedLabel
             // 
             this.CategoryUpdatedLabel.AutoSize = true;
-            this.CategoryUpdatedLabel.Font = new System.Drawing.Font("Bahnschrift", 12F);
-            this.CategoryUpdatedLabel.Location = new System.Drawing.Point(229, 76);
+            this.CategoryUpdatedLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
+            this.CategoryUpdatedLabel.Location = new System.Drawing.Point(191, 77);
             this.CategoryUpdatedLabel.Name = "CategoryUpdatedLabel";
-            this.CategoryUpdatedLabel.Size = new System.Drawing.Size(95, 19);
+            this.CategoryUpdatedLabel.Size = new System.Drawing.Size(51, 13);
             this.CategoryUpdatedLabel.TabIndex = 8;
-            this.CategoryUpdatedLabel.Text = "Обновлена:";
+            this.CategoryUpdatedLabel.Text = "Updated:";
             // 
             // CategoryCreatedLabel
             // 
             this.CategoryCreatedLabel.AutoSize = true;
-            this.CategoryCreatedLabel.Font = new System.Drawing.Font("Bahnschrift", 12F);
-            this.CategoryCreatedLabel.Location = new System.Drawing.Point(13, 76);
+            this.CategoryCreatedLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
+            this.CategoryCreatedLabel.Location = new System.Drawing.Point(3, 76);
             this.CategoryCreatedLabel.Name = "CategoryCreatedLabel";
-            this.CategoryCreatedLabel.Size = new System.Drawing.Size(77, 19);
+            this.CategoryCreatedLabel.Size = new System.Drawing.Size(47, 13);
             this.CategoryCreatedLabel.TabIndex = 7;
-            this.CategoryCreatedLabel.Text = "Создана:";
+            this.CategoryCreatedLabel.Text = "Created:";
             // 
             // dateTimePickerUpdated
             // 
             this.dateTimePickerUpdated.Enabled = false;
-            this.dateTimePickerUpdated.Location = new System.Drawing.Point(330, 75);
+            this.dateTimePickerUpdated.Location = new System.Drawing.Point(248, 73);
             this.dateTimePickerUpdated.Name = "dateTimePickerUpdated";
             this.dateTimePickerUpdated.Size = new System.Drawing.Size(129, 20);
             this.dateTimePickerUpdated.TabIndex = 10;
@@ -79,19 +81,19 @@ namespace NoteApp.View
             // noteNameLabel
             // 
             this.noteNameLabel.AutoSize = true;
-            this.noteNameLabel.Font = new System.Drawing.Font("Bahnschrift", 12F);
-            this.noteNameLabel.Location = new System.Drawing.Point(13, 9);
+            this.noteNameLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
+            this.noteNameLabel.Location = new System.Drawing.Point(3, 9);
             this.noteNameLabel.Name = "noteNameLabel";
-            this.noteNameLabel.Size = new System.Drawing.Size(86, 19);
+            this.noteNameLabel.Size = new System.Drawing.Size(30, 13);
             this.noteNameLabel.TabIndex = 11;
-            this.noteNameLabel.Text = "Название:";
+            this.noteNameLabel.Text = "Title:";
             // 
             // noteNameTextbox
             // 
             this.noteNameTextbox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.noteNameTextbox.Location = new System.Drawing.Point(105, 8);
+            this.noteNameTextbox.Location = new System.Drawing.Point(39, 6);
             this.noteNameTextbox.Name = "noteNameTextbox";
             this.noteNameTextbox.Size = new System.Drawing.Size(683, 20);
             this.noteNameTextbox.TabIndex = 12;
@@ -99,17 +101,17 @@ namespace NoteApp.View
             // noteCategoryLabel
             // 
             this.noteCategoryLabel.AutoSize = true;
-            this.noteCategoryLabel.Font = new System.Drawing.Font("Bahnschrift", 12F);
-            this.noteCategoryLabel.Location = new System.Drawing.Point(13, 43);
+            this.noteCategoryLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
+            this.noteCategoryLabel.Location = new System.Drawing.Point(3, 43);
             this.noteCategoryLabel.Name = "noteCategoryLabel";
-            this.noteCategoryLabel.Size = new System.Drawing.Size(89, 19);
+            this.noteCategoryLabel.Size = new System.Drawing.Size(52, 13);
             this.noteCategoryLabel.TabIndex = 13;
-            this.noteCategoryLabel.Text = "Категория:";
+            this.noteCategoryLabel.Text = "Category:";
             // 
             // newNoteCategoryCombobox
             // 
             this.newNoteCategoryCombobox.FormattingEnabled = true;
-            this.newNoteCategoryCombobox.Location = new System.Drawing.Point(105, 43);
+            this.newNoteCategoryCombobox.Location = new System.Drawing.Point(61, 40);
             this.newNoteCategoryCombobox.Name = "newNoteCategoryCombobox";
             this.newNoteCategoryCombobox.Size = new System.Drawing.Size(121, 21);
             this.newNoteCategoryCombobox.TabIndex = 14;
@@ -120,17 +122,39 @@ namespace NoteApp.View
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.newNoteRichTextbox.Font = new System.Drawing.Font("Bahnschrift", 12F);
-            this.newNoteRichTextbox.Location = new System.Drawing.Point(17, 112);
+            this.newNoteRichTextbox.Location = new System.Drawing.Point(6, 99);
             this.newNoteRichTextbox.Name = "newNoteRichTextbox";
-            this.newNoteRichTextbox.Size = new System.Drawing.Size(771, 326);
+            this.newNoteRichTextbox.Size = new System.Drawing.Size(788, 316);
             this.newNoteRichTextbox.TabIndex = 15;
             this.newNoteRichTextbox.Text = "";
+            // 
+            // okButton
+            // 
+            this.okButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.okButton.Location = new System.Drawing.Point(6, 421);
+            this.okButton.Name = "okButton";
+            this.okButton.Size = new System.Drawing.Size(75, 23);
+            this.okButton.TabIndex = 16;
+            this.okButton.Text = "OK";
+            this.okButton.UseVisualStyleBackColor = true;
+            // 
+            // cancelButton
+            // 
+            this.cancelButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.cancelButton.Location = new System.Drawing.Point(87, 421);
+            this.cancelButton.Name = "cancelButton";
+            this.cancelButton.Size = new System.Drawing.Size(75, 23);
+            this.cancelButton.TabIndex = 17;
+            this.cancelButton.Text = "Cancel";
+            this.cancelButton.UseVisualStyleBackColor = true;
             // 
             // NewNoteForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.cancelButton);
+            this.Controls.Add(this.okButton);
             this.Controls.Add(this.newNoteRichTextbox);
             this.Controls.Add(this.newNoteCategoryCombobox);
             this.Controls.Add(this.noteCategoryLabel);
@@ -158,5 +182,7 @@ namespace NoteApp.View
         private System.Windows.Forms.Label noteCategoryLabel;
         private System.Windows.Forms.ComboBox newNoteCategoryCombobox;
         private System.Windows.Forms.RichTextBox newNoteRichTextbox;
+        private System.Windows.Forms.Button okButton;
+        private System.Windows.Forms.Button cancelButton;
     }
 }
