@@ -29,6 +29,7 @@ namespace NoteApp.View
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(NewNoteForm));
             this.dateTimePickerCreated = new System.Windows.Forms.DateTimePicker();
             this.CategoryUpdatedLabel = new System.Windows.Forms.Label();
             this.CategoryCreatedLabel = new System.Windows.Forms.Label();
@@ -95,7 +96,7 @@ namespace NoteApp.View
             | System.Windows.Forms.AnchorStyles.Right)));
             this.noteNameTextbox.Location = new System.Drawing.Point(39, 6);
             this.noteNameTextbox.Name = "noteNameTextbox";
-            this.noteNameTextbox.Size = new System.Drawing.Size(683, 20);
+            this.noteNameTextbox.Size = new System.Drawing.Size(755, 20);
             this.noteNameTextbox.TabIndex = 12;
             // 
             // noteCategoryLabel
@@ -111,9 +112,9 @@ namespace NoteApp.View
             // newNoteCategoryCombobox
             // 
             this.newNoteCategoryCombobox.FormattingEnabled = true;
-            this.newNoteCategoryCombobox.Location = new System.Drawing.Point(61, 40);
+            this.newNoteCategoryCombobox.Location = new System.Drawing.Point(56, 40);
             this.newNoteCategoryCombobox.Name = "newNoteCategoryCombobox";
-            this.newNoteCategoryCombobox.Size = new System.Drawing.Size(121, 21);
+            this.newNoteCategoryCombobox.Size = new System.Drawing.Size(738, 21);
             this.newNoteCategoryCombobox.TabIndex = 14;
             // 
             // newNoteRichTextbox
@@ -137,6 +138,7 @@ namespace NoteApp.View
             this.okButton.TabIndex = 16;
             this.okButton.Text = "OK";
             this.okButton.UseVisualStyleBackColor = true;
+            this.okButton.Click += new System.EventHandler(this.okButton_Click);
             // 
             // cancelButton
             // 
@@ -147,6 +149,7 @@ namespace NoteApp.View
             this.cancelButton.TabIndex = 17;
             this.cancelButton.Text = "Cancel";
             this.cancelButton.UseVisualStyleBackColor = true;
+            this.cancelButton.Click += new System.EventHandler(this.cancelButton_Click);
             // 
             // NewNoteForm
             // 
@@ -164,6 +167,7 @@ namespace NoteApp.View
             this.Controls.Add(this.dateTimePickerCreated);
             this.Controls.Add(this.CategoryUpdatedLabel);
             this.Controls.Add(this.CategoryCreatedLabel);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "NewNoteForm";
             this.Text = "Add/Edit Note";
             this.ResumeLayout(false);
