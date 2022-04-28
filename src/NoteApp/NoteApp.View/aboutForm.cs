@@ -10,21 +10,16 @@ using System.Windows.Forms;
 
 namespace NoteApp.View
 {
-    public partial class NewNoteForm : Form
+    public partial class AboutForm : Form
     {
-        public NewNoteForm()
+        public AboutForm()
         {
             InitializeComponent();
         }
 
-        private void okButton_Click(object sender, EventArgs e)
+        private void emailLinkLabel_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            Close();
-        }
 
-        private void cancelButton_Click(object sender, EventArgs e)
-        {
-            Close();
         }
     }
 }
