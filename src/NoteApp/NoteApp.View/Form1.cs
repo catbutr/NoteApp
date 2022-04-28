@@ -10,11 +10,41 @@ using System.Windows.Forms;
 
 namespace NoteApp.View
 {
-    public partial class Form1 : Form
+    public partial class MainForm : Form
     {
-        public Form1()
+        public MainForm()
         {
             InitializeComponent();
+        }
+
+        private void newNotePicturebox_Click(object sender, EventArgs e)
+        {
+            Form ifrm = new NewNoteForm();
+            ifrm.ShowDialog();
+        }
+
+        private void AddStripItem_Click(object sender, EventArgs e)
+        {
+            Form ifrm = new NewNoteForm();
+            ifrm.ShowDialog();
+        }
+
+        private void AboutStripItem_Click(object sender, EventArgs e)
+        {
+            Form ifrm = new AboutForm();
+            ifrm.ShowDialog();
+        }
+
+        private void addButton_Click(object sender, EventArgs e)
+        {
+            Form ifrm = new NewNoteForm();
+            ifrm.ShowDialog();
+        }
+
+        private void editButton_Click(object sender, EventArgs e)
+        {
+            Form ifrm = new NewNoteForm();
+            ifrm.ShowDialog();
         }
     }
 }
