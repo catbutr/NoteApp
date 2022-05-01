@@ -82,8 +82,8 @@ namespace NoteApp.View
 
         private void RemoveObject()
         {
-            int selected = noteListBox.SelectedIndices[0];
-            if (selected < 0)
+            int selected = noteListBox.SelectedIndex;
+            if (selected == -1)
             {
                 return;
             }
@@ -104,9 +104,26 @@ namespace NoteApp.View
             noteCategoryLabel.Text = _project.Projects[index].Category.ToString();
         }
 
+        private void ClearSelectedObject()
+        {
+            noteRichTextbox.Text = " ";
+            titleLabel.Text = "Note Title";
+            noteCategoryLabel.Text = " ";
+        }
+
         private void UpdatedIndex(object sender, EventArgs e)
         {
-            UpdateSelectedObject(noteListBox.SelectedIndices[0]);
+            int selected = noteListBox.SelectedIndex;
+            if (selected == -1)
+            {
+                ClearSelectedObject();
+            }
+            else
+            {
+                UpdateSelectedObject(selected);
+            }
         }
+
+
     }
 }
