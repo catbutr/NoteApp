@@ -1,4 +1,5 @@
-﻿using System;
+﻿using NoteApp.Model;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,10 +13,21 @@ namespace NoteApp.View
 {
     public partial class mainForm : Form
     {
+
+        string[] testText = { "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+        "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+        "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+        "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."};
+       
         public mainForm()
         {
             InitializeComponent();
         }
+
+        static Note defaultNote = new Note();
+        static List<Note> defaultList = new List<Note> {defaultNote};
+        private Project _project = new Project(defaultList);
+
 
         private void newNotePicturebox_Click(object sender, EventArgs e)
         {
@@ -25,8 +37,8 @@ namespace NoteApp.View
 
         private void AddStripItem_Click(object sender, EventArgs e)
         {
-            Form ifrm = new NewNoteForm();
-            ifrm.ShowDialog();
+            AddNote();
+            UpdateListView();
         }
 
         private void AboutStripItem_Click(object sender, EventArgs e)
@@ -45,6 +57,34 @@ namespace NoteApp.View
         {
             Form ifrm = new NewNoteForm();
             ifrm.ShowDialog();
+        }
+
+        private void UpdateListView()
+        {
+            noteListView.Clear();
+            for (int i = 0; i< _project.Projects.Count; ++i)
+            {
+                noteListView.Items.Add(_project.Projects[i].Name);
+            }
+        }
+
+        private void AddNote()
+        {
+            Note newNote = new Note("Новый", NoteCategory.Work,testText);
+            _project.Projects.Add(newNote);
+        }
+
+        private void AddNoteTest()
+        {
+            Note newNote = new Note("ыфывфывфы", NoteCategory.Miscellaneous, testText);
+            noteListView.Items.Add(newNote.Name);
+        }
+
+        private void RemoveObject(object sender, EventArgs e)
+        {
+            int selected = noteListView.SelectedIndices[0];
+            noteListView.Items.RemoveAt(selected);
+            _project.Projects.RemoveAt(selected);
         }
     }
 }

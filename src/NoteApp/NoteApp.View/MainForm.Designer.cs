@@ -30,15 +30,6 @@ namespace NoteApp.View
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(mainForm));
-            System.Windows.Forms.ListViewItem listViewItem10 = new System.Windows.Forms.ListViewItem("1\\n");
-            System.Windows.Forms.ListViewItem listViewItem11 = new System.Windows.Forms.ListViewItem("2");
-            System.Windows.Forms.ListViewItem listViewItem12 = new System.Windows.Forms.ListViewItem("3");
-            System.Windows.Forms.ListViewItem listViewItem13 = new System.Windows.Forms.ListViewItem("4");
-            System.Windows.Forms.ListViewItem listViewItem14 = new System.Windows.Forms.ListViewItem("5");
-            System.Windows.Forms.ListViewItem listViewItem15 = new System.Windows.Forms.ListViewItem("6");
-            System.Windows.Forms.ListViewItem listViewItem16 = new System.Windows.Forms.ListViewItem("7");
-            System.Windows.Forms.ListViewItem listViewItem17 = new System.Windows.Forms.ListViewItem("8");
-            System.Windows.Forms.ListViewItem listViewItem18 = new System.Windows.Forms.ListViewItem("");
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.editButton = new System.Windows.Forms.Button();
             this.deleteButton = new System.Windows.Forms.Button();
@@ -125,6 +116,7 @@ namespace NoteApp.View
             this.deleteButton.Size = new System.Drawing.Size(48, 48);
             this.deleteButton.TabIndex = 12;
             this.deleteButton.UseVisualStyleBackColor = true;
+            this.deleteButton.Click += new System.EventHandler(this.RemoveObject);
             // 
             // addButton
             // 
@@ -165,16 +157,6 @@ namespace NoteApp.View
             this.columnHeader1});
             this.noteListView.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.noteListView.HideSelection = false;
-            this.noteListView.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
-            listViewItem10,
-            listViewItem11,
-            listViewItem12,
-            listViewItem13,
-            listViewItem14,
-            listViewItem15,
-            listViewItem16,
-            listViewItem17,
-            listViewItem18});
             this.noteListView.Location = new System.Drawing.Point(7, 40);
             this.noteListView.Name = "noteListView";
             this.noteListView.Size = new System.Drawing.Size(309, 534);
@@ -285,7 +267,7 @@ namespace NoteApp.View
             // exitMenuStripItem
             // 
             this.exitMenuStripItem.Name = "exitMenuStripItem";
-            this.exitMenuStripItem.Size = new System.Drawing.Size(180, 22);
+            this.exitMenuStripItem.Size = new System.Drawing.Size(93, 22);
             this.exitMenuStripItem.Text = "Exit";
             // 
             // editToolStripMenuItem
@@ -316,6 +298,7 @@ namespace NoteApp.View
             this.removeStripMenuItem.Name = "removeStripMenuItem";
             this.removeStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.removeStripMenuItem.Text = "Remove Note";
+            this.removeStripMenuItem.Click += new System.EventHandler(this.RemoveObject);
             // 
             // helpToolStripMenuItem
             // 
@@ -328,7 +311,7 @@ namespace NoteApp.View
             // aboutStripMenuItem
             // 
             this.aboutStripMenuItem.Name = "aboutStripMenuItem";
-            this.aboutStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.aboutStripMenuItem.Size = new System.Drawing.Size(107, 22);
             this.aboutStripMenuItem.Text = "About";
             this.aboutStripMenuItem.Click += new System.EventHandler(this.AboutStripItem_Click);
             // 
