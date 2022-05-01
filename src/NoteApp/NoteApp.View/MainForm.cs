@@ -14,10 +14,10 @@ namespace NoteApp.View
     public partial class mainForm : Form
     {
 
-        string[] testText = { "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-        "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
-        "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
-        "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."};
+        string testText = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do" +
+            " eiusmod tempor incididunt ut labore et dolore magna aliqua Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat." +
+            "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia" +
+            " deserunt mollit anim id est laborum.";
        
         public mainForm()
         {
@@ -61,30 +61,52 @@ namespace NoteApp.View
 
         private void UpdateListView()
         {
-            noteListView.Clear();
+            noteListBox.Items.Clear();
             for (int i = 0; i< _project.Projects.Count; ++i)
             {
-                noteListView.Items.Add(_project.Projects[i].Name);
+                noteListBox.Items.Add(_project.Projects[i].Name);
             }
         }
 
         private void AddNote()
         {
-            Note newNote = new Note("Новый", NoteCategory.Work,testText);
+            Note newNote = new Note("Новый день наш ждёт товарищи, вперёд, c богом", NoteCategory.Work,testText);
             _project.Projects.Add(newNote);
         }
 
         private void AddNoteTest()
         {
             Note newNote = new Note("ыфывфывфы", NoteCategory.Miscellaneous, testText);
-            noteListView.Items.Add(newNote.Name);
+            noteListBox.Items.Add(newNote.Name);
+        }
+
+        private void RemoveObject()
+        {
+            int selected = noteListBox.SelectedIndices[0];
+            if (selected < 0)
+            {
+                return;
+            }
+            noteListBox.Items.RemoveAt(selected);
+            _project.Projects.RemoveAt(selected);
         }
 
         private void RemoveObject(object sender, EventArgs e)
         {
-            int selected = noteListView.SelectedIndices[0];
-            noteListView.Items.RemoveAt(selected);
-            _project.Projects.RemoveAt(selected);
+            RemoveObject();
+            UpdateListView();
+        }
+
+        private void UpdateSelectedObject(int index)
+        {
+            noteRichTextbox.Text = _project.Projects[index].Text;
+            titleLabel.Text = _project.Projects[index].Name;
+            noteCategoryLabel.Text = _project.Projects[index].Category.ToString();
+        }
+
+        private void UpdatedIndex(object sender, EventArgs e)
+        {
+            UpdateSelectedObject(noteListBox.SelectedIndices[0]);
         }
     }
 }

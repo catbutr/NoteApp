@@ -36,8 +36,6 @@ namespace NoteApp.View
             this.addButton = new System.Windows.Forms.Button();
             this.categoryComboBox = new System.Windows.Forms.ComboBox();
             this.showCategoryLabel = new System.Windows.Forms.Label();
-            this.noteListView = new System.Windows.Forms.ListView();
-            this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.noteRichTextbox = new System.Windows.Forms.RichTextBox();
             this.updatedDateTimePicker = new System.Windows.Forms.DateTimePicker();
             this.createdDateTimePicker = new System.Windows.Forms.DateTimePicker();
@@ -55,6 +53,7 @@ namespace NoteApp.View
             this.removeStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.noteListBox = new System.Windows.Forms.ListBox();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -70,12 +69,12 @@ namespace NoteApp.View
             // 
             // splitContainer1.Panel1
             // 
+            this.splitContainer1.Panel1.Controls.Add(this.noteListBox);
             this.splitContainer1.Panel1.Controls.Add(this.editButton);
             this.splitContainer1.Panel1.Controls.Add(this.deleteButton);
             this.splitContainer1.Panel1.Controls.Add(this.addButton);
             this.splitContainer1.Panel1.Controls.Add(this.categoryComboBox);
             this.splitContainer1.Panel1.Controls.Add(this.showCategoryLabel);
-            this.splitContainer1.Panel1.Controls.Add(this.noteListView);
             // 
             // splitContainer1.Panel2
             // 
@@ -148,22 +147,6 @@ namespace NoteApp.View
             this.showCategoryLabel.TabIndex = 9;
             this.showCategoryLabel.Text = "Category:";
             // 
-            // noteListView
-            // 
-            this.noteListView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.noteListView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.columnHeader1});
-            this.noteListView.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.noteListView.HideSelection = false;
-            this.noteListView.Location = new System.Drawing.Point(7, 40);
-            this.noteListView.Name = "noteListView";
-            this.noteListView.Size = new System.Drawing.Size(309, 534);
-            this.noteListView.TabIndex = 8;
-            this.noteListView.UseCompatibleStateImageBehavior = false;
-            this.noteListView.View = System.Windows.Forms.View.List;
-            // 
             // noteRichTextbox
             // 
             this.noteRichTextbox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -175,7 +158,7 @@ namespace NoteApp.View
             this.noteRichTextbox.ReadOnly = true;
             this.noteRichTextbox.Size = new System.Drawing.Size(619, 555);
             this.noteRichTextbox.TabIndex = 7;
-            this.noteRichTextbox.Text = resources.GetString("noteRichTextbox.Text");
+            this.noteRichTextbox.Text = "";
             // 
             // updatedDateTimePicker
             // 
@@ -283,20 +266,20 @@ namespace NoteApp.View
             // addStripMenuItem
             // 
             this.addStripMenuItem.Name = "addStripMenuItem";
-            this.addStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.addStripMenuItem.Size = new System.Drawing.Size(146, 22);
             this.addStripMenuItem.Text = "Add Note";
             this.addStripMenuItem.Click += new System.EventHandler(this.AddStripItem_Click);
             // 
             // EditStripMenuItem
             // 
             this.EditStripMenuItem.Name = "EditStripMenuItem";
-            this.EditStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.EditStripMenuItem.Size = new System.Drawing.Size(146, 22);
             this.EditStripMenuItem.Text = "Edit Note";
             // 
             // removeStripMenuItem
             // 
             this.removeStripMenuItem.Name = "removeStripMenuItem";
-            this.removeStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.removeStripMenuItem.Size = new System.Drawing.Size(146, 22);
             this.removeStripMenuItem.Text = "Remove Note";
             this.removeStripMenuItem.Click += new System.EventHandler(this.RemoveObject);
             // 
@@ -314,6 +297,17 @@ namespace NoteApp.View
             this.aboutStripMenuItem.Size = new System.Drawing.Size(107, 22);
             this.aboutStripMenuItem.Text = "About";
             this.aboutStripMenuItem.Click += new System.EventHandler(this.AboutStripItem_Click);
+            // 
+            // noteListBox
+            // 
+            this.noteListBox.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.noteListBox.FormattingEnabled = true;
+            this.noteListBox.HorizontalScrollbar = true;
+            this.noteListBox.Location = new System.Drawing.Point(7, 40);
+            this.noteListBox.Name = "noteListBox";
+            this.noteListBox.Size = new System.Drawing.Size(309, 537);
+            this.noteListBox.TabIndex = 8;
+            this.noteListBox.SelectedIndexChanged += new System.EventHandler(this.UpdatedIndex);
             // 
             // mainForm
             // 
@@ -351,8 +345,6 @@ namespace NoteApp.View
         private System.Windows.Forms.RichTextBox noteRichTextbox;
         private System.Windows.Forms.ComboBox categoryComboBox;
         private System.Windows.Forms.Label showCategoryLabel;
-        private System.Windows.Forms.ListView noteListView;
-        private System.Windows.Forms.ColumnHeader columnHeader1;
         private System.Windows.Forms.MenuStrip mainMenuStrip;
         private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem editToolStripMenuItem;
@@ -365,6 +357,7 @@ namespace NoteApp.View
         private System.Windows.Forms.Button addButton;
         private System.Windows.Forms.Button editButton;
         private System.Windows.Forms.Button deleteButton;
+        private System.Windows.Forms.ListBox noteListBox;
     }
 }
 
