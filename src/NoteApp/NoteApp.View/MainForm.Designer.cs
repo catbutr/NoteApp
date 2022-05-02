@@ -31,6 +31,7 @@ namespace NoteApp.View
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(mainForm));
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.noteListBox = new System.Windows.Forms.ListBox();
             this.editButton = new System.Windows.Forms.Button();
             this.deleteButton = new System.Windows.Forms.Button();
             this.addButton = new System.Windows.Forms.Button();
@@ -53,7 +54,6 @@ namespace NoteApp.View
             this.removeStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.noteListBox = new System.Windows.Forms.ListBox();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -89,6 +89,19 @@ namespace NoteApp.View
             this.splitContainer1.Size = new System.Drawing.Size(953, 640);
             this.splitContainer1.SplitterDistance = 317;
             this.splitContainer1.TabIndex = 0;
+            // 
+            // noteListBox
+            // 
+            this.noteListBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.noteListBox.FormattingEnabled = true;
+            this.noteListBox.HorizontalScrollbar = true;
+            this.noteListBox.Location = new System.Drawing.Point(7, 40);
+            this.noteListBox.Name = "noteListBox";
+            this.noteListBox.Size = new System.Drawing.Size(309, 537);
+            this.noteListBox.TabIndex = 8;
+            this.noteListBox.SelectedIndexChanged += new System.EventHandler(this.UpdatedIndex);
             // 
             // editButton
             // 
@@ -133,10 +146,20 @@ namespace NoteApp.View
             // categoryComboBox
             // 
             this.categoryComboBox.FormattingEnabled = true;
+            this.categoryComboBox.Items.AddRange(new object[] {
+            "Work",
+            "Home",
+            "Health",
+            "People",
+            "Documents",
+            "Finances",
+            "Miscellaneous",
+            "All"});
             this.categoryComboBox.Location = new System.Drawing.Point(55, 13);
             this.categoryComboBox.Name = "categoryComboBox";
             this.categoryComboBox.Size = new System.Drawing.Size(261, 21);
             this.categoryComboBox.TabIndex = 10;
+            this.categoryComboBox.SelectedIndexChanged += new System.EventHandler(this.UpdateCategory);
             // 
             // showCategoryLabel
             // 
@@ -297,17 +320,6 @@ namespace NoteApp.View
             this.aboutStripMenuItem.Size = new System.Drawing.Size(107, 22);
             this.aboutStripMenuItem.Text = "About";
             this.aboutStripMenuItem.Click += new System.EventHandler(this.AboutStripItem_Click);
-            // 
-            // noteListBox
-            // 
-            this.noteListBox.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.noteListBox.FormattingEnabled = true;
-            this.noteListBox.HorizontalScrollbar = true;
-            this.noteListBox.Location = new System.Drawing.Point(7, 40);
-            this.noteListBox.Name = "noteListBox";
-            this.noteListBox.Size = new System.Drawing.Size(309, 537);
-            this.noteListBox.TabIndex = 8;
-            this.noteListBox.SelectedIndexChanged += new System.EventHandler(this.UpdatedIndex);
             // 
             // mainForm
             // 

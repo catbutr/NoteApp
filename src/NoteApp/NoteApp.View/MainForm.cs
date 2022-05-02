@@ -93,15 +93,28 @@ namespace NoteApp.View
 
         private void RemoveObject(object sender, EventArgs e)
         {
-            RemoveObject();
-            UpdateListView();
+            DialogResult result = MessageBox.Show(@"Do you really wanna remove " + _project.Projects[noteListBox.SelectedIndex].Name,
+                "Message", 
+                MessageBoxButtons.OKCancel,
+                MessageBoxIcon.Stop,
+                MessageBoxDefaultButton.Button1,
+                MessageBoxOptions.ServiceNotification);
+            if (result == DialogResult.OK)
+            {
+                RemoveObject();
+                UpdateListView();
+            }
         }
+
+
 
         private void UpdateSelectedObject(int index)
         {
             noteRichTextbox.Text = _project.Projects[index].Text;
             titleLabel.Text = _project.Projects[index].Name;
             noteCategoryLabel.Text = _project.Projects[index].Category.ToString();
+            createdDateTimePicker.Value = _project.Projects[index].CreationTime;
+            updatedDateTimePicker.Value = _project.Projects[index].UpdateTime;
         }
 
         private void ClearSelectedObject()
@@ -124,6 +137,29 @@ namespace NoteApp.View
             }
         }
 
+        private void UpdateComboBoxCategory()
+        {
+            int selected = categoryComboBox.SelectedIndex;
+            noteListBox.Items.Clear();
+            for (int i = 0; i < _project.Projects.Count; ++i)
+            {
+                if (selected == (int) _project.Projects[i].Category)
+                {
+                    noteListBox.Items.Add(_project.Projects[i].Name);
+                }
+            }
+            if (selected == 7)
+            {
+                for (int i = 0; i < _project.Projects.Count; ++i)
+                {
+                    noteListBox.Items.Add(_project.Projects[i].Name);
+                }
+            }
+        }
 
+        private void UpdateCategory(object sender, EventArgs e)
+        {
+            UpdateComboBoxCategory();
+        }
     }
 }
