@@ -35,7 +35,7 @@ namespace NoteApp.View
             this.CategoryCreatedLabel = new System.Windows.Forms.Label();
             this.dateTimePickerUpdated = new System.Windows.Forms.DateTimePicker();
             this.noteNameLabel = new System.Windows.Forms.Label();
-            this.noteNameTextbox = new System.Windows.Forms.TextBox();
+            this.newNoteNameTextbox = new System.Windows.Forms.TextBox();
             this.noteCategoryLabel = new System.Windows.Forms.Label();
             this.newNoteCategoryCombobox = new System.Windows.Forms.ComboBox();
             this.newNoteRichTextbox = new System.Windows.Forms.RichTextBox();
@@ -91,15 +91,15 @@ namespace NoteApp.View
             this.noteNameLabel.TabIndex = 11;
             this.noteNameLabel.Text = "Title:";
             // 
-            // noteNameTextbox
+            // newNoteNameTextbox
             // 
-            this.noteNameTextbox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.newNoteNameTextbox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.noteNameTextbox.Location = new System.Drawing.Point(57, 9);
-            this.noteNameTextbox.Name = "noteNameTextbox";
-            this.noteNameTextbox.Size = new System.Drawing.Size(736, 20);
-            this.noteNameTextbox.TabIndex = 12;
+            this.newNoteNameTextbox.Location = new System.Drawing.Point(57, 9);
+            this.newNoteNameTextbox.Name = "newNoteNameTextbox";
+            this.newNoteNameTextbox.Size = new System.Drawing.Size(736, 20);
+            this.newNoteNameTextbox.TabIndex = 12;
             // 
             // noteCategoryLabel
             // 
@@ -117,6 +117,14 @@ namespace NoteApp.View
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.newNoteCategoryCombobox.FormattingEnabled = true;
+            this.newNoteCategoryCombobox.Items.AddRange(new object[] {
+            "Work",
+            "Home",
+            "Health",
+            "People",
+            "Documents ",
+            "Finances",
+            "Miscellaneous"});
             this.newNoteCategoryCombobox.Location = new System.Drawing.Point(57, 34);
             this.newNoteCategoryCombobox.Name = "newNoteCategoryCombobox";
             this.newNoteCategoryCombobox.Size = new System.Drawing.Size(736, 21);
@@ -133,6 +141,7 @@ namespace NoteApp.View
             this.newNoteRichTextbox.Size = new System.Drawing.Size(787, 329);
             this.newNoteRichTextbox.TabIndex = 15;
             this.newNoteRichTextbox.Text = "";
+            this.newNoteRichTextbox.TextChanged += new System.EventHandler(this.UpdateText);
             // 
             // okButton
             // 
@@ -166,7 +175,7 @@ namespace NoteApp.View
             this.Controls.Add(this.newNoteRichTextbox);
             this.Controls.Add(this.newNoteCategoryCombobox);
             this.Controls.Add(this.noteCategoryLabel);
-            this.Controls.Add(this.noteNameTextbox);
+            this.Controls.Add(this.newNoteNameTextbox);
             this.Controls.Add(this.noteNameLabel);
             this.Controls.Add(this.dateTimePickerUpdated);
             this.Controls.Add(this.dateTimePickerCreated);
@@ -187,7 +196,7 @@ namespace NoteApp.View
         private System.Windows.Forms.Label CategoryCreatedLabel;
         private System.Windows.Forms.DateTimePicker dateTimePickerUpdated;
         private System.Windows.Forms.Label noteNameLabel;
-        private System.Windows.Forms.TextBox noteNameTextbox;
+        private System.Windows.Forms.TextBox newNoteNameTextbox;
         private System.Windows.Forms.Label noteCategoryLabel;
         private System.Windows.Forms.ComboBox newNoteCategoryCombobox;
         private System.Windows.Forms.RichTextBox newNoteRichTextbox;
