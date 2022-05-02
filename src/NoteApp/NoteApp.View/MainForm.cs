@@ -161,5 +161,19 @@ namespace NoteApp.View
         {
             UpdateComboBoxCategory();
         }
+
+        private void ExitStripElement(object sender, EventArgs e)
+        {
+            DialogResult result = MessageBox.Show(@"Do you really want to exit the app? ",
+                                                   "Message",
+                                                    MessageBoxButtons.OKCancel,
+                                                    MessageBoxIcon.Stop,
+                                                    MessageBoxDefaultButton.Button1,
+                                                    MessageBoxOptions.ServiceNotification);
+            if (result == DialogResult.OK)
+            {
+                Application.Exit();
+            }
+        }
     }
 }
