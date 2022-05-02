@@ -30,7 +30,7 @@ namespace NoteApp.Model
         /// <summary>
         /// Текст заметки
         /// </summary>
-        private string [] _noteText;
+        private string _noteText;
 
         /// <summary>
         /// Время создания заметки
@@ -78,7 +78,7 @@ namespace NoteApp.Model
         /// <summary>
         /// Возвращает или задаёт текст заметки
         /// </summary>
-        public string [] Text
+        public string Text
         {
             get
             {
@@ -124,7 +124,7 @@ namespace NoteApp.Model
         /// <summary>
         /// Создаёт экземпляр книги
         /// </summary>
-        public Note(string name = "Без названия", NoteCategory category = NoteCategory.Miscellaneous, string[] text = null)
+        public Note(string name = "Без названия", NoteCategory category = NoteCategory.Miscellaneous, string text = "без текста")
         {
             Name = name;
             Category = category;

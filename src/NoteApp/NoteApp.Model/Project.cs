@@ -14,12 +14,12 @@ namespace NoteApp.Model
         /// <summary>
         /// Сборник заметок
         /// </summary>
-        private Note[] _projects;
+        private List<Note> _projects;
 
         /// <summary>
         /// Геттеры и сеттеры для сборника заметок
         /// </summary>
-        public Note[] Projects
+        public List<Note> Projects
         {
             get
             {
@@ -29,6 +29,15 @@ namespace NoteApp.Model
             {
                 _projects = value;
             }
+        }
+
+
+        /// <summary>
+        /// Конструктор
+        /// </summary>
+        public Project(List<Note> projects)
+        {
+            _projects = projects;
         }
 
 
