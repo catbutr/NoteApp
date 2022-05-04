@@ -23,43 +23,20 @@ namespace NoteApp.View
 
         private void UpdateForm()
         {
-            newNoteNameTextbox.Text = _note.Name;
-            newNoteRichTextbox.Text = _note.Text;
-            newNoteCategoryCombobox.SelectedIndex = (int)_note.Category;
+            noteNameTextbox.Text = _note.Title;
+            noteRichTextbox.Text = _note.Text;
+            noteCategoryCombobox.SelectedIndex = (int)_note.Category;
             dateTimePickerCreated.Value = _note.CreationTime;
             dateTimePickerUpdated.Value = _note.UpdateTime;
         }
 
         private void UpdateNote()
         {
-            _note.Name = newNoteNameTextbox.Text;
-            _note.Text = newNoteRichTextbox.Text;
-            int selected = newNoteCategoryCombobox.SelectedIndex;
-            switch (selected)
-            {
-                //    { Work, Home, Health, People, Documents, Finances, Miscellaneous }
-                case 0:
-                    _note.Category = NoteCategory.Work;
-                    break;
-                case 1:
-                    _note.Category = NoteCategory.Home;
-                    break;
-                case 2:
-                    _note.Category = NoteCategory.Health;
-                    break;
-                case 3:
-                    _note.Category = NoteCategory.People;
-                    break;
-                case 4:
-                    _note.Category = NoteCategory.Documents;
-                    break;
-                case 5:
-                    _note.Category = NoteCategory.Finances;
-                    break;
-                case 6:
-                    _note.Category = NoteCategory.Miscellaneous;
-                    break;
-            }
+            NoteCategory newCategory;
+            Enum.TryParse<NoteCategory>(noteCategoryCombobox.Text, out newCategory);
+            _note.Title = noteNameTextbox.Text;
+            _note.Text = noteRichTextbox.Text;
+            _note.Category = newCategory;
             _note.UpdateTime = DateTime.Now;
         }
 
@@ -86,7 +63,19 @@ namespace NoteApp.View
 
         private void UpdateText(object sender, EventArgs e)
         {
-            _note.Text = newNoteRichTextbox.Text;
+            _note.Text = noteRichTextbox.Text;
+        }
+
+        private void newNoteNameTextbox_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                _note.Title = noteNameTextbox.Text;
+            }
+            catch (ArgumentException exception)
+            {
+                MessageBox.Show(exception.Message);
+            }
         }
     }
 }
