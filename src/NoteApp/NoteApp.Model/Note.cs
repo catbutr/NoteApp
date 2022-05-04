@@ -61,10 +61,10 @@ namespace NoteApp.Model
             }
             set
             {
-                if (value.Length > 50)
+                if (value.Length > 10)
                 {
                     throw new ArgumentException($"number of charachters in the name should be less or equal to 50"
-                        + $"but was {value.Length}");
+                        + $" but was {value.Length}");
                 }
                 _noteTitle = value;
                 _noteUpdateDate = DateTime.Now;

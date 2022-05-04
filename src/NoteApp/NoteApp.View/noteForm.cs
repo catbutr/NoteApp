@@ -71,10 +71,12 @@ namespace NoteApp.View
             try
             {
                 _note.Title = noteNameTextbox.Text;
+                noteNameTextbox.BackColor = Color.White;
             }
             catch (ArgumentException exception)
             {
                 MessageBox.Show(exception.Message);
+                noteNameTextbox.BackColor = Color.LightPink;
             }
         }
     }
