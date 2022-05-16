@@ -96,8 +96,20 @@ namespace NoteApp.View
         /// <param name="e"></param>
         private void editButton_Click(object sender, EventArgs e)
         {
-            Form ifrm = new NewNoteForm();
-            ifrm.ShowDialog();
+            //Переброс данных
+            var selectedIndex = noteListBox.SelectedIndex;
+            var selectedNote = _project.Notes[selectedIndex];
+            var newNoteForm = new NewNoteForm();
+            newNoteForm.Note = selectedNote;
+            newNoteForm.ShowDialog();
+            var updatedNote = newNoteForm.Note;
+
+            //Удаление старых данных
+            noteListBox.Items.RemoveAt(selectedIndex);
+            _project.Notes.RemoveAt(selectedIndex);
+            _project.Notes.Insert(selectedIndex, updatedNote);
+            var title = updatedNote.Title;
+            noteListBox.Items.Insert(selectedIndex,title);
         }
 
         /// <summary>

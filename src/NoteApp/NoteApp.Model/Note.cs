@@ -61,7 +61,7 @@ namespace NoteApp.Model
             }
             set
             {
-                if (value.Length > 10)
+                if (value.Length > 50)
                 {
                     throw new ArgumentException($"number of charachters in the name should be less or equal to 50"
                         + $" but was {value.Length}");

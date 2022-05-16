@@ -21,9 +21,24 @@ namespace NoteApp.View
 
         private Note _note = new Note();
 
+        public Note Note
+        {
+            get
+            {
+                return _note;
+            }
+            set
+            {
+                _note = value;
+                if (_note != null)
+                {
+                    noteRichTextbox.Text = _note.Text;
+                }
+            }
+        }
         private void UpdateForm()
         {
-            noteNameTextbox.Text = _note.Title;
+            noteTitleTextbox.Text = _note.Title;
             noteRichTextbox.Text = _note.Text;
             noteCategoryCombobox.SelectedIndex = (int)_note.Category;
             dateTimePickerCreated.Value = _note.CreationTime;
@@ -32,11 +47,12 @@ namespace NoteApp.View
 
         private void UpdateNote()
         {
-            NoteCategory newCategory;
-            Enum.TryParse<NoteCategory>(noteCategoryCombobox.Text, out newCategory);
-            _note.Title = noteNameTextbox.Text;
+            _note.Title = noteTitleTextbox.Text;
             _note.Text = noteRichTextbox.Text;
-            _note.Category = newCategory;
+            //Блок работы с категориями
+            Array values = Enum.GetValues(typeof(NoteCategory));
+            _note.Category = (NoteCategory)values.GetValue(noteCategoryCombobox.SelectedIndex);
+            ////
             _note.UpdateTime = DateTime.Now;
         }
 
@@ -68,16 +84,21 @@ namespace NoteApp.View
 
         private void newNoteNameTextbox_TextChanged(object sender, EventArgs e)
         {
+        }
+
+        private void noteTitleTextbox_TextChanged(object sender, EventArgs e)
+        {
             try
             {
-                _note.Title = noteNameTextbox.Text;
-                noteNameTextbox.BackColor = Color.White;
+                _note.Title = noteTitleTextbox.Text;
+                noteTitleTextbox.BackColor = Color.White;
             }
             catch (ArgumentException exception)
             {
                 MessageBox.Show(exception.Message);
-                noteNameTextbox.BackColor = Color.LightPink;
+                noteTitleTextbox.BackColor = Color.LightPink;
             }
+            UpdateNote();
         }
     }
 }

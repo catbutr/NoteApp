@@ -35,7 +35,7 @@ namespace NoteApp.View
             this.CategoryCreatedLabel = new System.Windows.Forms.Label();
             this.dateTimePickerUpdated = new System.Windows.Forms.DateTimePicker();
             this.noteNameLabel = new System.Windows.Forms.Label();
-            this.noteNameTextbox = new System.Windows.Forms.TextBox();
+            this.noteTitleTextbox = new System.Windows.Forms.TextBox();
             this.noteCategoryLabel = new System.Windows.Forms.Label();
             this.noteCategoryCombobox = new System.Windows.Forms.ComboBox();
             this.noteRichTextbox = new System.Windows.Forms.RichTextBox();
@@ -91,15 +91,16 @@ namespace NoteApp.View
             this.noteNameLabel.TabIndex = 11;
             this.noteNameLabel.Text = "Title:";
             // 
-            // noteNameTextbox
+            // noteTitleTextbox
             // 
-            this.noteNameTextbox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.noteTitleTextbox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.noteNameTextbox.Location = new System.Drawing.Point(57, 9);
-            this.noteNameTextbox.Name = "noteNameTextbox";
-            this.noteNameTextbox.Size = new System.Drawing.Size(736, 20);
-            this.noteNameTextbox.TabIndex = 12;
+            this.noteTitleTextbox.Location = new System.Drawing.Point(57, 9);
+            this.noteTitleTextbox.Name = "noteTitleTextbox";
+            this.noteTitleTextbox.Size = new System.Drawing.Size(736, 20);
+            this.noteTitleTextbox.TabIndex = 12;
+            this.noteTitleTextbox.TextChanged += new System.EventHandler(this.noteTitleTextbox_TextChanged);
             // 
             // noteCategoryLabel
             // 
@@ -175,7 +176,7 @@ namespace NoteApp.View
             this.Controls.Add(this.noteRichTextbox);
             this.Controls.Add(this.noteCategoryCombobox);
             this.Controls.Add(this.noteCategoryLabel);
-            this.Controls.Add(this.noteNameTextbox);
+            this.Controls.Add(this.noteTitleTextbox);
             this.Controls.Add(this.noteNameLabel);
             this.Controls.Add(this.dateTimePickerUpdated);
             this.Controls.Add(this.dateTimePickerCreated);
@@ -196,7 +197,7 @@ namespace NoteApp.View
         private System.Windows.Forms.Label CategoryCreatedLabel;
         private System.Windows.Forms.DateTimePicker dateTimePickerUpdated;
         private System.Windows.Forms.Label noteNameLabel;
-        private System.Windows.Forms.TextBox noteNameTextbox;
+        private System.Windows.Forms.TextBox noteTitleTextbox;
         private System.Windows.Forms.Label noteCategoryLabel;
         private System.Windows.Forms.ComboBox noteCategoryCombobox;
         private System.Windows.Forms.RichTextBox noteRichTextbox;
