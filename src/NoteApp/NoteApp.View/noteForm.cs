@@ -32,7 +32,9 @@ namespace NoteApp.View
                 _note = value;
                 if (_note != null)
                 {
+                    noteCategoryCombobox.SelectedIndex = (int)_note.Category;
                     noteRichTextbox.Text = _note.Text;
+                    noteTitleTextbox.Text = _note.Title;
                 }
             }
         }
@@ -50,8 +52,7 @@ namespace NoteApp.View
             _note.Title = noteTitleTextbox.Text;
             _note.Text = noteRichTextbox.Text;
             //Блок работы с категориями
-            Array values = Enum.GetValues(typeof(NoteCategory));
-            _note.Category = (NoteCategory)values.GetValue(noteCategoryCombobox.SelectedIndex);
+            _note.Category = (NoteCategory)Enum.Parse(typeof(NoteCategory), noteCategoryCombobox.GetItemText(noteCategoryCombobox.SelectedItem));
             ////
             _note.UpdateTime = DateTime.Now;
         }
@@ -59,11 +60,14 @@ namespace NoteApp.View
 
         private void okButton_Click(object sender, EventArgs e)
         {
+            UpdateNote();
+            DialogResult = DialogResult.OK;
             Close();
         }
 
         private void cancelButton_Click(object sender, EventArgs e)
         {
+            DialogResult = DialogResult.Cancel;
             Close();
         }
 
@@ -88,17 +92,6 @@ namespace NoteApp.View
 
         private void noteTitleTextbox_TextChanged(object sender, EventArgs e)
         {
-            try
-            {
-                _note.Title = noteTitleTextbox.Text;
-                noteTitleTextbox.BackColor = Color.White;
-            }
-            catch (ArgumentException exception)
-            {
-                MessageBox.Show(exception.Message);
-                noteTitleTextbox.BackColor = Color.LightPink;
-            }
-            UpdateNote();
         }
     }
 }

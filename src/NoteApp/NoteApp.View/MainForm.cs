@@ -85,8 +85,18 @@ namespace NoteApp.View
         /// <param name="e"></param>
         private void addButton_Click(object sender, EventArgs e)
         {
-            Form ifrm = new NewNoteForm();
-            ifrm.ShowDialog();
+            //Переброс данных
+            var newNoteForm = new NewNoteForm();
+            newNoteForm.ShowDialog();
+            var newNote = newNoteForm.Note;
+
+            if (newNoteForm.DialogResult == DialogResult.OK)
+            {
+                //Добавление новой заметки
+                _project.Notes.Add(newNote);
+                var title = newNote.Title;
+                noteListBox.Items.Add(title);
+            }
         }
 
         /// <summary>
@@ -104,12 +114,15 @@ namespace NoteApp.View
             newNoteForm.ShowDialog();
             var updatedNote = newNoteForm.Note;
 
-            //Удаление старых данных
-            noteListBox.Items.RemoveAt(selectedIndex);
-            _project.Notes.RemoveAt(selectedIndex);
-            _project.Notes.Insert(selectedIndex, updatedNote);
-            var title = updatedNote.Title;
-            noteListBox.Items.Insert(selectedIndex,title);
+            if (newNoteForm.DialogResult == DialogResult.OK)
+            {
+                //Удаление старых данных
+                noteListBox.Items.RemoveAt(selectedIndex);
+                _project.Notes.RemoveAt(selectedIndex);
+                _project.Notes.Insert(selectedIndex, updatedNote);
+                var title = updatedNote.Title;
+                noteListBox.Items.Insert(selectedIndex, title);
+            }
         }
 
         /// <summary>
