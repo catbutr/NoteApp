@@ -273,7 +273,7 @@ namespace NoteApp.View
             // exitMenuStripItem
             // 
             this.exitMenuStripItem.Name = "exitMenuStripItem";
-            this.exitMenuStripItem.Size = new System.Drawing.Size(180, 22);
+            this.exitMenuStripItem.Size = new System.Drawing.Size(93, 22);
             this.exitMenuStripItem.Text = "Exit";
             this.exitMenuStripItem.Click += new System.EventHandler(this.ExitStripElement);
             // 
@@ -290,20 +290,20 @@ namespace NoteApp.View
             // addStripMenuItem
             // 
             this.addStripMenuItem.Name = "addStripMenuItem";
-            this.addStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.addStripMenuItem.Size = new System.Drawing.Size(146, 22);
             this.addStripMenuItem.Text = "Add Note";
             this.addStripMenuItem.Click += new System.EventHandler(this.AddStripItem_Click);
             // 
             // EditStripMenuItem
             // 
             this.EditStripMenuItem.Name = "EditStripMenuItem";
-            this.EditStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.EditStripMenuItem.Size = new System.Drawing.Size(146, 22);
             this.EditStripMenuItem.Text = "Edit Note";
             // 
             // removeStripMenuItem
             // 
             this.removeStripMenuItem.Name = "removeStripMenuItem";
-            this.removeStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.removeStripMenuItem.Size = new System.Drawing.Size(146, 22);
             this.removeStripMenuItem.Text = "Remove Note";
             this.removeStripMenuItem.Click += new System.EventHandler(this.RemoveObject);
             // 
@@ -318,7 +318,7 @@ namespace NoteApp.View
             // aboutStripMenuItem
             // 
             this.aboutStripMenuItem.Name = "aboutStripMenuItem";
-            this.aboutStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.aboutStripMenuItem.Size = new System.Drawing.Size(107, 22);
             this.aboutStripMenuItem.Text = "About";
             this.aboutStripMenuItem.Click += new System.EventHandler(this.AboutStripItem_Click);
             // 

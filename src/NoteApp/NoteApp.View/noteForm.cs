@@ -21,6 +21,8 @@ namespace NoteApp.View
 
         private Note _note = new Note();
 
+        private string _titleError;
+
         public Note Note
         {
             get
@@ -57,11 +59,25 @@ namespace NoteApp.View
             _note.UpdateTime = DateTime.Now;
         }
 
+        private bool CheckFormOnErrors()
+        {
+            if (_titleError == string.Empty)
+            {
+                return true;
+            }
+            else
+            {
+                MessageBox.Show(_titleError);
+                return false;
+            }
+        }
+
 
         private void okButton_Click(object sender, EventArgs e)
         {
             UpdateNote();
             DialogResult = DialogResult.OK;
+            CheckFormOnErrors();
             Close();
         }
 
@@ -92,6 +108,18 @@ namespace NoteApp.View
 
         private void noteTitleTextbox_TextChanged(object sender, EventArgs e)
         {
+            try
+            {
+                noteTitleTextbox.BackColor = Color.White;
+                _titleError = "";
+                _note.Title = noteTitleTextbox.Text;
+            }
+            catch (ArgumentException exception)
+            {
+                _titleError = exception.Message;
+                MessageBox.Show(exception.Message);
+                noteTitleTextbox.BackColor = Color.HotPink;
+            }
         }
     }
 }

@@ -29,10 +29,10 @@ namespace NoteApp.View
             "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia",
             " deserunt mollit anim id est laborum." };
 
-
         public mainForm()
         {
             InitializeComponent();
+            categoryComboBox.SelectedItem = "All";
         }
 
         /// <summary>
@@ -44,6 +44,7 @@ namespace NoteApp.View
         /// Сборник заметок
         /// </summary>
         private Project _project = new Project();
+        List<Note> _currentNotes = new List<Note> { };
 
         /// <summary>
         /// Открытие окна редактирования заметки
@@ -86,6 +87,7 @@ namespace NoteApp.View
         private void addButton_Click(object sender, EventArgs e)
         {
             //Переброс данных
+            var _clonedProject = _project;
             var newNoteForm = new NewNoteForm();
             newNoteForm.ShowDialog();
             var newNote = newNoteForm.Note;
@@ -93,9 +95,11 @@ namespace NoteApp.View
             if (newNoteForm.DialogResult == DialogResult.OK)
             {
                 //Добавление новой заметки
-                _project.Notes.Add(newNote);
-                var title = newNote.Title;
-                noteListBox.Items.Add(title);
+                _clonedProject.Notes.Add(newNote);
+                _project = _clonedProject;
+                //Красивое оформление
+                UpdateListView();
+                UpdateSelectedObject(noteListBox.Items.Count);
             }
         }
 
@@ -107,8 +111,9 @@ namespace NoteApp.View
         private void editButton_Click(object sender, EventArgs e)
         {
             //Переброс данных
+            var _clonedProject = _project;
             var selectedIndex = noteListBox.SelectedIndex;
-            var selectedNote = _project.Notes[selectedIndex];
+            var selectedNote = _clonedProject.Notes[selectedIndex];
             var newNoteForm = new NewNoteForm();
             newNoteForm.Note = selectedNote;
             newNoteForm.ShowDialog();
@@ -118,11 +123,14 @@ namespace NoteApp.View
             {
                 //Удаление старых данных
                 noteListBox.Items.RemoveAt(selectedIndex);
-                _project.Notes.RemoveAt(selectedIndex);
-                _project.Notes.Insert(selectedIndex, updatedNote);
-                var title = updatedNote.Title;
-                noteListBox.Items.Insert(selectedIndex, title);
+                _clonedProject.Notes.RemoveAt(selectedIndex);
+                _clonedProject.Notes.Insert(selectedIndex, updatedNote);
+                _project = _clonedProject;
+                //Красивое оформление
+                UpdateListView();
+                UpdateSelectedObject(selectedIndex);
             }
+
         }
 
         /// <summary>
@@ -131,9 +139,9 @@ namespace NoteApp.View
         private void UpdateListView()
         {
             noteListBox.Items.Clear();
-            for (int i = 0; i < _project.Notes.Count; ++i)
+            for (int i = 0; i < _currentNotes.Count; ++i)
             {
-                noteListBox.Items.Add(_project.Notes[i].Title);
+                noteListBox.Items.Add(_currentNotes[i].Title);
             }
         }
 
@@ -148,6 +156,8 @@ namespace NoteApp.View
             int randomCategory = rnd.Next(values.Length);
             Note newNote = new Note(testTitles[randomTitleIndex], (NoteCategory)values.GetValue(randomCategory), testText[randomTextIndex]);
             _project.Notes.Add(newNote);
+            UpdateComboBoxCategory();
+            UpdateListView();
         }
 
         /// <summary>
@@ -161,7 +171,9 @@ namespace NoteApp.View
                 return;
             }
             noteListBox.Items.RemoveAt(selected);
-            _project.Notes.RemoveAt(selected);
+            var removedElement =_currentNotes[selected];
+            _currentNotes.RemoveAt(selected);
+            _project.Notes.Remove(removedElement);
         }
 
         /// <summary>
@@ -188,11 +200,11 @@ namespace NoteApp.View
         /// <param name="index"></param>
         private void UpdateSelectedObject(int index)
         {
-            noteRichTextbox.Text = _project.Notes[index].Text;
-            titleLabel.Text = _project.Notes[index].Title;
-            noteCategoryLabel.Text = _project.Notes[index].Category.ToString();
-            createdDateTimePicker.Value = _project.Notes[index].CreationTime;
-            updatedDateTimePicker.Value = _project.Notes[index].UpdateTime;
+            noteRichTextbox.Text = _currentNotes[index].Text;
+            titleLabel.Text = _currentNotes[index].Title;
+            noteCategoryLabel.Text = _currentNotes[index].Category.ToString();
+            createdDateTimePicker.Value = _currentNotes[index].CreationTime;
+            updatedDateTimePicker.Value = _currentNotes[index].UpdateTime;
         }
 
 
@@ -231,20 +243,28 @@ namespace NoteApp.View
         {
             int selected = categoryComboBox.SelectedIndex;
             noteListBox.Items.Clear();
-            for (int i = 0; i < _project.Notes.Count; ++i)
-            {
-                if (selected == (int)_project.Notes[i].Category)
-                {
-                    noteListBox.Items.Add(_project.Notes[i].Title);
-                }
-            }
             if (selected == 7)
             {
-                for (int i = 0; i < _project.Notes.Count; ++i)
+                _currentNotes = _project.Notes;
+                for (int i = 0; i < _currentNotes.Count; ++i)
                 {
-                    noteListBox.Items.Add(_project.Notes[i].Title);
+                    noteListBox.Items.Add(_currentNotes[i].Title);
                 }
             }
+            else
+            {
+                var selectedNotesByCategory =
+                from notes in _project.Notes
+                where (categoryComboBox.SelectedIndex == (int)notes.Category)
+                select notes;
+                List<Note> selectedNotesByCategoryList = selectedNotesByCategory.ToList();
+                _currentNotes = selectedNotesByCategoryList;
+                for (int i = 0; i < _currentNotes.Count; ++i)
+                {
+                    noteListBox.Items.Add(_currentNotes[i].Title);
+                }
+            }
+            UpdateListView();
         }
 
         /// <summary>
