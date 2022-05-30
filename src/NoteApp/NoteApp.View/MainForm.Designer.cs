@@ -275,6 +275,7 @@ namespace NoteApp.View
             this.exitMenuStripItem.Name = "exitMenuStripItem";
             this.exitMenuStripItem.Size = new System.Drawing.Size(93, 22);
             this.exitMenuStripItem.Text = "Exit";
+            this.exitMenuStripItem.Click += new System.EventHandler(this.ExitStripElement);
             // 
             // editToolStripMenuItem
             // 

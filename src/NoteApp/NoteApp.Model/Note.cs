@@ -10,7 +10,15 @@ namespace NoteApp.Model
     /// Перечисление категорий заметок
     /// </summary>
     public enum NoteCategory
-    { Work, Home, Health, People, Documents, Finances, Miscellaneous }
+    {
+        Work,
+        Home,
+        Health,
+        People,
+        Documents,
+        Finances,
+        Miscellaneous
+    }
 
     /// <summary>
     /// Описание заметки
@@ -20,7 +28,7 @@ namespace NoteApp.Model
         /// <summary>
         /// Название заметки
         /// </summary>
-        private string _noteName;
+        private string _noteTitle;
 
         /// <summary>
         /// Категория заметки
@@ -45,23 +53,27 @@ namespace NoteApp.Model
         /// <summary>
         /// Возвращает или задаёт имя заметки
         /// </summary>
-        public string Name
+        public string Title
         {
             get
             {
-                return _noteName;
+                return _noteTitle;
             }
             set
             {
                 if (value.Length > 50)
                 {
-                    throw new ArgumentException($"number of charachters in the name should be less or equal to 50" + "but was {value.Length}");
+                    throw new ArgumentException($"number of charachters in the name should be less or equal to 50"
+                        + $" but was {value.Length}");
                 }
-                _noteName = value;
+                _noteTitle = value;
                 _noteUpdateDate = DateTime.Now;
             }
         }
 
+        /// <summary>
+        /// Возвращает или задаёт категорию заметки
+        /// </summary>
         public NoteCategory Category
         {
             get
@@ -86,6 +98,11 @@ namespace NoteApp.Model
             }
             set
             {
+                if (value.Length > 2000)
+                {
+                    throw new ArgumentException($"number of characters in the text should be less or equal to 2000"
+                        + $" but was {value.Length}");
+                }
                 _noteText = value;
                 _noteUpdateDate = DateTime.Now;
             }
@@ -124,9 +141,9 @@ namespace NoteApp.Model
         /// <summary>
         /// Создаёт экземпляр книги
         /// </summary>
-        public Note(string name = "Без названия", NoteCategory category = NoteCategory.Miscellaneous, string text = "без текста")
+        public Note(string title = "Без названия", NoteCategory category = NoteCategory.Miscellaneous, string text = "без текста")
         {
-            Name = name;
+            Title = title;
             Category = category;
             Text = text;
             CreationTime = DateTime.Now;
