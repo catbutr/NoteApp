@@ -23,7 +23,7 @@ namespace NoteApp.Model
     /// <summary>
     /// Описание заметки
     /// </summary>
-    public class Note
+    public class Note : ICloneable
     {
         /// <summary>
         /// Название заметки
@@ -148,5 +148,7 @@ namespace NoteApp.Model
             Text = text;
             CreationTime = DateTime.Now;
         }
+
+        public object Clone() => new Note(Title,Category,Text);
     }
 }
