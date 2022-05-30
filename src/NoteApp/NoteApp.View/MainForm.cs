@@ -125,6 +125,10 @@ namespace NoteApp.View
             //Переброс данных
             var _clonedProject = _currentNotes;
             var selectedIndex = noteListBox.SelectedIndex;
+            if (selectedIndex < 0)
+            {
+                return;
+            }
             var selectedNote = _clonedProject[selectedIndex];
             var newNoteForm = new NewNoteForm();
             newNoteForm.Note = selectedNote;
