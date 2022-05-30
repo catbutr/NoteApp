@@ -100,7 +100,7 @@ namespace NoteApp.View
             this.noteTitleTextbox.Name = "noteTitleTextbox";
             this.noteTitleTextbox.Size = new System.Drawing.Size(736, 20);
             this.noteTitleTextbox.TabIndex = 12;
-            this.noteTitleTextbox.TextChanged += new System.EventHandler(this.noteTitleTextbox_TextChanged);
+            this.noteTitleTextbox.TextChanged += new System.EventHandler(this.UpdateTitle);
             // 
             // noteCategoryLabel
             // 

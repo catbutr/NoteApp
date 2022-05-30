@@ -13,15 +13,11 @@ namespace NoteApp.View
 {
     public partial class NewNoteForm : Form
     {
-        public NewNoteForm()
-        {
-            InitializeComponent();
-            UpdateForm();
-        }
 
         private Note _note = new Note();
 
         private string _titleError;
+        private string _textError;
 
         public Note Note
         {
@@ -31,15 +27,30 @@ namespace NoteApp.View
             }
             set
             {
-                _note = value;
-                if (_note != null)
+                Note _clonnedNote = value;
+                //Note _clonnedNote = new Note();
+                //_clonnedNote.Title = _note.Title;
+                //_clonnedNote.Text = _note.Text;
+                //_clonnedNote.Category = _note.Category;
+                if (_clonnedNote != null)
                 {
-                    noteCategoryCombobox.SelectedIndex = (int)_note.Category;
-                    noteRichTextbox.Text = _note.Text;
-                    noteTitleTextbox.Text = _note.Title;
+                    noteCategoryCombobox.SelectedIndex = (int)_clonnedNote.Category;
+                    noteRichTextbox.Text = _clonnedNote.Text;
+                    noteTitleTextbox.Text = _clonnedNote.Title;
+                    noteCategoryCombobox.SelectedIndex = (int)_clonnedNote.Category;
                 }
+                _note = _clonnedNote;
+
             }
         }
+
+        public NewNoteForm()
+        {
+            InitializeComponent();
+            UpdateForm();
+            noteCategoryCombobox.SelectedIndex = (int)_note.Category;
+        }
+
         private void UpdateForm()
         {
             noteTitleTextbox.Text = _note.Title;
@@ -68,6 +79,16 @@ namespace NoteApp.View
             else
             {
                 MessageBox.Show(_titleError);
+                return false;
+            }
+
+            if (_textError == string.Empty)
+            {
+                return true;
+            }
+            else
+            {
+                MessageBox.Show(_textError);
                 return false;
             }
         }
@@ -99,26 +120,41 @@ namespace NoteApp.View
 
         private void UpdateText(object sender, EventArgs e)
         {
-            _note.Text = noteRichTextbox.Text;
+            try
+            {
+                noteRichTextbox.BackColor = Color.White;
+                _textError = "";
+                _note.Text = noteRichTextbox.Text;
+                okButton.Enabled = true;
+            }
+            catch (ArgumentException exception)
+            {
+                _textError = exception.Message;
+                MessageBox.Show(exception.Message);
+                noteRichTextbox.BackColor = Color.HotPink;
+                okButton.Enabled = false;
+            }
         }
 
         private void newNoteNameTextbox_TextChanged(object sender, EventArgs e)
         {
         }
 
-        private void noteTitleTextbox_TextChanged(object sender, EventArgs e)
+        private void UpdateTitle(object sender, EventArgs e)
         {
             try
             {
                 noteTitleTextbox.BackColor = Color.White;
                 _titleError = "";
                 _note.Title = noteTitleTextbox.Text;
+                okButton.Enabled = true;
             }
             catch (ArgumentException exception)
             {
                 _titleError = exception.Message;
                 MessageBox.Show(exception.Message);
                 noteTitleTextbox.BackColor = Color.HotPink;
+                okButton.Enabled = false;
             }
         }
     }

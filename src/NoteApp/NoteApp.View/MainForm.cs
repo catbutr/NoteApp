@@ -99,8 +99,20 @@ namespace NoteApp.View
                 _project = _clonedProject;
                 //Красивое оформление
                 UpdateListView();
-                UpdateSelectedObject(noteListBox.Items.Count);
+                if (categoryComboBox.SelectedItem.ToString() == "All")
+                {
+                    UpdateSelectedObject(noteListBox.Items.Count - 1);
+                }
+                else
+                {
+                    if (newNote.Category == (NoteCategory)Enum.Parse(typeof(NoteCategory), categoryComboBox.GetItemText(categoryComboBox.SelectedItem)))
+                    {
+                        UpdateSelectedObject(noteListBox.Items.Count - 1);
+                    }
+                }
             }
+            UpdateComboBoxCategory();
+            SortListBox();
         }
 
         /// <summary>
@@ -111,9 +123,9 @@ namespace NoteApp.View
         private void editButton_Click(object sender, EventArgs e)
         {
             //Переброс данных
-            var _clonedProject = _project;
+            var _clonedProject = _currentNotes;
             var selectedIndex = noteListBox.SelectedIndex;
-            var selectedNote = _clonedProject.Notes[selectedIndex];
+            var selectedNote = _clonedProject[selectedIndex];
             var newNoteForm = new NewNoteForm();
             newNoteForm.Note = selectedNote;
             newNoteForm.ShowDialog();
@@ -123,13 +135,25 @@ namespace NoteApp.View
             {
                 //Удаление старых данных
                 noteListBox.Items.RemoveAt(selectedIndex);
-                _clonedProject.Notes.RemoveAt(selectedIndex);
-                _clonedProject.Notes.Insert(selectedIndex, updatedNote);
-                _project = _clonedProject;
+                _clonedProject.RemoveAt(selectedIndex);
+                _clonedProject.Insert(selectedIndex, updatedNote);
+                _currentNotes = _clonedProject;
                 //Красивое оформление
                 UpdateListView();
-                UpdateSelectedObject(selectedIndex);
+                if (categoryComboBox.SelectedItem.ToString() == "All")
+                {
+                    UpdateSelectedObject(noteListBox.Items.Count - 1);
+                }
+                else
+                {
+                    if (updatedNote.Category == (NoteCategory)Enum.Parse(typeof(NoteCategory), categoryComboBox.GetItemText(categoryComboBox.SelectedItem)))
+                    {
+                        UpdateSelectedObject(selectedIndex);
+                    }
+                }
             }
+            UpdateComboBoxCategory();
+            SortListBox();
 
         }
 
@@ -171,7 +195,7 @@ namespace NoteApp.View
                 return;
             }
             noteListBox.Items.RemoveAt(selected);
-            var removedElement =_currentNotes[selected];
+            var removedElement = _currentNotes[selected];
             _currentNotes.RemoveAt(selected);
             _project.Notes.Remove(removedElement);
         }
@@ -294,6 +318,28 @@ namespace NoteApp.View
             {
                 Application.Exit();
             }
+        }
+
+        /// <summary>
+        /// Сортировка ListBox по дате обновления
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void SortListBox()
+        {
+            noteListBox.Items.Clear();
+            var orderedSelectedNotesByUpdateTime =
+            from notes in _project.Notes
+            orderby notes.UpdateTime descending
+            select notes;
+            List<Note> orderedSelectedNotesByUpdateTimeList = orderedSelectedNotesByUpdateTime.ToList();
+            _currentNotes = orderedSelectedNotesByUpdateTimeList;
+            for (int i = 0; i < _currentNotes.Count; ++i)
+            {
+                noteListBox.Items.Add(_currentNotes[i].Title);
+            }
+            _project.Notes = _currentNotes;
+            UpdateComboBoxCategory();
         }
     }
 }

@@ -98,6 +98,11 @@ namespace NoteApp.Model
             }
             set
             {
+                if (value.Length > 2000)
+                {
+                    throw new ArgumentException($"number of characters in the text should be less or equal to 2000"
+                        + $" but was {value.Length}");
+                }
                 _noteText = value;
                 _noteUpdateDate = DateTime.Now;
             }
