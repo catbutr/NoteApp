@@ -60,7 +60,6 @@ namespace NoteApp.View
             this.CategoryUpdatedLabel.Size = new System.Drawing.Size(51, 13);
             this.CategoryUpdatedLabel.TabIndex = 8;
             this.CategoryUpdatedLabel.Text = "Updated:";
-            this.CategoryUpdatedLabel.Click += new System.EventHandler(this.CategoryUpdatedLabel_Click);
             // 
             // CategoryCreatedLabel
             // 
@@ -71,7 +70,6 @@ namespace NoteApp.View
             this.CategoryCreatedLabel.Size = new System.Drawing.Size(47, 13);
             this.CategoryCreatedLabel.TabIndex = 7;
             this.CategoryCreatedLabel.Text = "Created:";
-            this.CategoryCreatedLabel.Click += new System.EventHandler(this.CategoryCreatedLabel_Click);
             // 
             // dateTimePickerUpdated
             // 

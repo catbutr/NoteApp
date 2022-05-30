@@ -149,6 +149,10 @@ namespace NoteApp.Model
             CreationTime = DateTime.Now;
         }
 
+        /// <summary>
+        /// Клонирование объекта
+        /// </summary>
+        /// <returns></returns>
         public object Clone() => new Note(Title,Category,Text);
     }
 }

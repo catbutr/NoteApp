@@ -13,12 +13,24 @@ namespace NoteApp.View
 {
     public partial class NewNoteForm : Form
     {
-
+        /// <summary>
+        /// Сама заметка
+        /// </summary>
         private Note _note = new Note();
-
+        
+        /// <summary>
+        /// Ошибка в заглавии заметки
+        /// </summary>
         private string _titleError;
+
+        /// <summary>
+        /// Ошибка в тексте заметки
+        /// </summary>
         private string _textError;
 
+        /// <summary>
+        /// Передача заметки в основное окно
+        /// </summary>
         public Note Note
         {
             get
@@ -51,6 +63,9 @@ namespace NoteApp.View
             noteCategoryCombobox.SelectedIndex = (int)_note.Category;
         }
 
+        /// <summary>
+        /// Обновление данных в форме
+        /// </summary>
         private void UpdateForm()
         {
             noteTitleTextbox.Text = _note.Title;
@@ -60,16 +75,21 @@ namespace NoteApp.View
             dateTimePickerUpdated.Value = _note.UpdateTime;
         }
 
+        /// <summary>
+        /// Обновление данных в заметке
+        /// </summary>
         private void UpdateNote()
         {
             _note.Title = noteTitleTextbox.Text;
             _note.Text = noteRichTextbox.Text;
-            //Блок работы с категориями
             _note.Category = (NoteCategory)Enum.Parse(typeof(NoteCategory), noteCategoryCombobox.GetItemText(noteCategoryCombobox.SelectedItem));
-            ////
             _note.UpdateTime = DateTime.Now;
         }
 
+        /// <summary>
+        /// Проверка содержания формы на ошибки
+        /// </summary>
+        /// <returns></returns>
         private bool CheckFormOnErrors()
         {
             if (_titleError == string.Empty)
@@ -93,7 +113,11 @@ namespace NoteApp.View
             }
         }
 
-
+        /// <summary>
+        /// Реализация кнопки ок
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void okButton_Click(object sender, EventArgs e)
         {
             UpdateNote();
@@ -102,22 +126,22 @@ namespace NoteApp.View
             Close();
         }
 
+        /// <summary>
+        /// Реализация кнопки отмена
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void cancelButton_Click(object sender, EventArgs e)
         {
             DialogResult = DialogResult.Cancel;
             Close();
         }
 
-        private void CategoryUpdatedLabel_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void CategoryCreatedLabel_Click(object sender, EventArgs e)
-        {
-
-        }
-
+        /// <summary>
+        /// Провека текста заметки на ошибки
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void UpdateText(object sender, EventArgs e)
         {
             try
@@ -136,10 +160,11 @@ namespace NoteApp.View
             }
         }
 
-        private void newNoteNameTextbox_TextChanged(object sender, EventArgs e)
-        {
-        }
-
+        /// <summary>
+        /// Проверка названия заметки на ошибки
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void UpdateTitle(object sender, EventArgs e)
         {
             try
