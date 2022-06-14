@@ -75,6 +75,13 @@ namespace NoteApp.View
             dateTimePickerUpdated.Value = _note.UpdateTime;
         }
 
+
+        NoteCategory ParseCategory(string parseableString)
+        {
+            return (NoteCategory)Enum.Parse(typeof(NoteCategory),
+                parseableString);
+        }
+
         /// <summary>
         /// Обновление данных в заметке
         /// </summary>
@@ -82,7 +89,8 @@ namespace NoteApp.View
         {
             _note.Title = noteTitleTextbox.Text;
             _note.Text = noteRichTextbox.Text;
-            _note.Category = (NoteCategory)Enum.Parse(typeof(NoteCategory), noteCategoryCombobox.GetItemText(noteCategoryCombobox.SelectedItem));
+            string parseableString = noteCategoryCombobox.GetItemText(noteCategoryCombobox.SelectedItem);
+            _note.Category = ParseCategory(parseableString);
             _note.UpdateTime = DateTime.Now;
         }
 
@@ -92,25 +100,24 @@ namespace NoteApp.View
         /// <returns></returns>
         private bool CheckFormOnErrors()
         {
-            if (_titleError == string.Empty)
+            if (_titleError == string.Empty || _textError == string.Empty)
             {
                 return true;
             }
             else
             {
-                MessageBox.Show(_titleError);
-                return false;
+                if (_titleError == string.Empty)
+                {
+                    MessageBox.Show(_titleError);
+                    return false;
+                }
+                else
+                {
+                    MessageBox.Show(_textError);
+                    return false;
+                }
             }
 
-            if (_textError == string.Empty)
-            {
-                return true;
-            }
-            else
-            {
-                MessageBox.Show(_textError);
-                return false;
-            }
         }
 
         /// <summary>

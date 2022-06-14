@@ -29,6 +29,12 @@ namespace NoteApp.View
             "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia",
             " deserunt mollit anim id est laborum." };
 
+        NoteCategory ParseCategory(string parseableString)
+        {
+            return (NoteCategory)Enum.Parse(typeof(NoteCategory),
+                parseableString);
+        }
+
         public mainForm()
         {
             InitializeComponent();
@@ -105,7 +111,8 @@ namespace NoteApp.View
                 }
                 else
                 {
-                    if (newNote.Category == (NoteCategory)Enum.Parse(typeof(NoteCategory), categoryComboBox.GetItemText(categoryComboBox.SelectedItem)))
+                    string parseableString = categoryComboBox.GetItemText(categoryComboBox.SelectedItem);
+                    if (newNote.Category == ParseCategory(parseableString))
                     {
                         UpdateSelectedObject(noteListBox.Items.Count - 1);
                     }
@@ -150,7 +157,8 @@ namespace NoteApp.View
                 }
                 else
                 {
-                    if (updatedNote.Category == (NoteCategory)Enum.Parse(typeof(NoteCategory), categoryComboBox.GetItemText(categoryComboBox.SelectedItem)))
+                    string parseableString = categoryComboBox.GetItemText(categoryComboBox.SelectedItem);
+                    if (updatedNote.Category == ParseCategory(parseableString))
                     {
                         UpdateSelectedObject(selectedIndex);
                     }
@@ -182,7 +190,9 @@ namespace NoteApp.View
             int randomTextIndex = rnd.Next(testText.Count);
             Array values = Enum.GetValues(typeof(NoteCategory));
             int randomCategory = rnd.Next(values.Length);
-            Note newNote = new Note(testTitles[randomTitleIndex], (NoteCategory)values.GetValue(randomCategory), testText[randomTextIndex]);
+            Note newNote = new Note(testTitles[randomTitleIndex], 
+                (NoteCategory)values.GetValue(randomCategory), 
+                testText[randomTextIndex]);
             _project.Notes.Add(newNote);
             UpdateComboBoxCategory();
             UpdateListView();
