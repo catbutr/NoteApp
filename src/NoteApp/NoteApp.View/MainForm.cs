@@ -13,11 +13,25 @@ namespace NoteApp.View
 {
     public partial class mainForm : Form
     {
-
+        //Todo:
+        //Выбирается последняя отредактированная заметка+
+        //Сброс категории при очистке всех элементов одной категории+
+        //Все формы с заглавной буквы+
+        //Правильное оформление кода+
+        //Перенести дебаг в отдельной 
+        //Обработчик в самый конец+
+        //Модификаторы везде и для всего+
+        //Клон для проекта
+        //all в константу+
         /// <summary>
         /// Названия заметок для случайной генерации
         /// </summary>
         List<string> testTitles = new List<string> { "Каждый", "Охотник", "Желает", "Знать", "Где", "Живёт", "Фазан" };
+
+        private const string categoryAll = "All";
+
+        public string FileName { get; private set; } = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData)
+    + @"\NoteApp\NoteApp.txt";
 
         /// <summary>
         /// Текст заметок для случайной генерации
@@ -29,7 +43,9 @@ namespace NoteApp.View
             "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia",
             " deserunt mollit anim id est laborum." };
 
-        NoteCategory ParseCategory(string parseableString)
+        private const string AllNotes = "all";
+
+        public NoteCategory ParseCategory(string parseableString)
         {
             return (NoteCategory)Enum.Parse(typeof(NoteCategory),
                 parseableString);
@@ -39,12 +55,13 @@ namespace NoteApp.View
         {
             InitializeComponent();
             categoryComboBox.SelectedItem = "All";
+            ProjectManager.LoadFromFile(FileName);
         }
 
         /// <summary>
         /// Случайное распределение
         /// </summary>
-        Random rnd = new Random();
+        public Random random = new Random();
 
         /// <summary>
         /// Сборник заметок
@@ -59,8 +76,8 @@ namespace NoteApp.View
         /// <param name="e"></param>
         private void newNotePicturebox_Click(object sender, EventArgs e)
         {
-            Form ifrm = new NewNoteForm();
-            ifrm.ShowDialog();
+            Form newNoteForm = new NoteForm();
+            newNoteForm.ShowDialog();
         }
 
         /// <summary>
@@ -68,9 +85,9 @@ namespace NoteApp.View
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void AddStripItem_Click(object sender, EventArgs e)
+        private void AddNoteStripItem_Click(object sender, EventArgs e)
         {
-            AddNote();
+            AddRandomNote();
             UpdateListView();
         }
 
@@ -79,10 +96,10 @@ namespace NoteApp.View
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void AboutStripItem_Click(object sender, EventArgs e)
+        private void AboutNoteStripItem_Click(object sender, EventArgs e)
         {
-            Form ifrm = new AboutForm();
-            ifrm.ShowDialog();
+            Form newAboutForm = new AboutForm();
+            newAboutForm.ShowDialog();
         }
 
         /// <summary>
@@ -93,30 +110,19 @@ namespace NoteApp.View
         private void addButton_Click(object sender, EventArgs e)
         {
             //Переброс данных
-            var _clonedProject = _project;
-            var newNoteForm = new NewNoteForm();
+            var copyProject = _project;
+            var newNoteForm = new NoteForm();
             newNoteForm.ShowDialog();
             var newNote = newNoteForm.Note;
 
             if (newNoteForm.DialogResult == DialogResult.OK)
             {
                 //Добавление новой заметки
-                _clonedProject.Notes.Add(newNote);
-                _project = _clonedProject;
+                copyProject.Notes.Add(newNote);
+                _project = copyProject;
                 //Красивое оформление
                 UpdateListView();
-                if (categoryComboBox.SelectedItem.ToString() == "All")
-                {
-                    UpdateSelectedObject(noteListBox.Items.Count - 1);
-                }
-                else
-                {
-                    string parseableString = categoryComboBox.GetItemText(categoryComboBox.SelectedItem);
-                    if (newNote.Category == ParseCategory(parseableString))
-                    {
-                        UpdateSelectedObject(noteListBox.Items.Count - 1);
-                    }
-                }
+                CategorySelector(newNote.Category);
             }
             UpdateComboBoxCategory();
             SortListBox();
@@ -137,32 +143,21 @@ namespace NoteApp.View
                 return;
             }
             var selectedNote = _clonedProject[selectedIndex];
-            var newNoteForm = new NewNoteForm();
+            var newNoteForm = new NoteForm();
             newNoteForm.Note = selectedNote;
             newNoteForm.ShowDialog();
-            var updatedNote = newNoteForm.Note;
 
             if (newNoteForm.DialogResult == DialogResult.OK)
             {
+                var updatedNote = newNoteForm.Note;
                 //Удаление старых данных
                 noteListBox.Items.RemoveAt(selectedIndex);
                 _clonedProject.RemoveAt(selectedIndex);
                 _clonedProject.Insert(selectedIndex, updatedNote);
                 _currentNotes = _clonedProject;
-                //Красивое оформление
                 UpdateListView();
-                if (categoryComboBox.SelectedItem.ToString() == "All")
-                {
-                    UpdateSelectedObject(noteListBox.Items.Count - 1);
-                }
-                else
-                {
-                    string parseableString = categoryComboBox.GetItemText(categoryComboBox.SelectedItem);
-                    if (updatedNote.Category == ParseCategory(parseableString))
-                    {
-                        UpdateSelectedObject(selectedIndex);
-                    }
-                }
+                //В метод
+                CategorySelector(updatedNote.Category);
             }
             UpdateComboBoxCategory();
             SortListBox();
@@ -170,90 +165,25 @@ namespace NoteApp.View
         }
 
         /// <summary>
-        /// Обновление списка заметок
-        /// </summary>
-        private void UpdateListView()
-        {
-            noteListBox.Items.Clear();
-            for (int i = 0; i < _currentNotes.Count; ++i)
-            {
-                noteListBox.Items.Add(_currentNotes[i].Title);
-            }
-        }
-
-        /// <summary>
-        /// Добавить случайно сгенерированную заметку
-        /// </summary>
-        private void AddNote()
-        {
-            int randomTitleIndex = rnd.Next(testTitles.Count);
-            int randomTextIndex = rnd.Next(testText.Count);
-            Array values = Enum.GetValues(typeof(NoteCategory));
-            int randomCategory = rnd.Next(values.Length);
-            Note newNote = new Note(testTitles[randomTitleIndex], 
-                (NoteCategory)values.GetValue(randomCategory), 
-                testText[randomTextIndex]);
-            _project.Notes.Add(newNote);
-            UpdateComboBoxCategory();
-            UpdateListView();
-        }
-
-        /// <summary>
-        /// Удалить заметку
-        /// </summary>
-        private void RemoveObject()
-        {
-            int selected = noteListBox.SelectedIndex;
-            if (selected == -1)
-            {
-                return;
-            }
-            noteListBox.Items.RemoveAt(selected);
-            var removedElement = _currentNotes[selected];
-            _currentNotes.RemoveAt(selected);
-            _project.Notes.Remove(removedElement);
-        }
-
-        /// <summary>
         /// Удаление заметки с выводом сообщения и 
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void RemoveObject(object sender, EventArgs e)
+        private void deleteButton_Click(object sender, EventArgs e)
         {
+            if (noteListBox.Items.Count == 0)
+            {
+                return;
+            }
             DialogResult result = MessageBox.Show(@"Do you really wanna remove " + _project.Notes[noteListBox.SelectedIndex].Title,
                 "Message",
                 MessageBoxButtons.OKCancel,
                 MessageBoxIcon.Stop);
             if (result == DialogResult.OK)
             {
-                RemoveObject();
+                RemoveNote();
                 UpdateListView();
             }
-        }
-
-        /// <summary>
-        /// Обновление правой части интерфейча при выборе заметки 
-        /// </summary>
-        /// <param name="index"></param>
-        private void UpdateSelectedObject(int index)
-        {
-            noteRichTextbox.Text = _currentNotes[index].Text;
-            titleLabel.Text = _currentNotes[index].Title;
-            noteCategoryLabel.Text = _currentNotes[index].Category.ToString();
-            createdDateTimePicker.Value = _currentNotes[index].CreationTime;
-            updatedDateTimePicker.Value = _currentNotes[index].UpdateTime;
-        }
-
-
-        /// <summary>
-        /// Очистка правой части интерфейса
-        /// </summary>
-        private void ClearSelectedObject()
-        {
-            noteRichTextbox.Text = " ";
-            titleLabel.Text = "Note Title";
-            noteCategoryLabel.Text = " ";
         }
 
         /// <summary>
@@ -266,43 +196,12 @@ namespace NoteApp.View
             int selected = noteListBox.SelectedIndex;
             if (selected == -1)
             {
-                ClearSelectedObject();
+                ClearSelectedNote();
             }
             else
             {
                 UpdateSelectedObject(selected);
             }
-        }
-
-        /// <summary>
-        /// Обновление списка заметок при смене активной категории
-        /// </summary>
-        private void UpdateComboBoxCategory()
-        {
-            int selected = categoryComboBox.SelectedIndex;
-            noteListBox.Items.Clear();
-            if (selected == 7)
-            {
-                _currentNotes = _project.Notes;
-                for (int i = 0; i < _currentNotes.Count; ++i)
-                {
-                    noteListBox.Items.Add(_currentNotes[i].Title);
-                }
-            }
-            else
-            {
-                var selectedNotesByCategory =
-                from notes in _project.Notes
-                where (categoryComboBox.SelectedIndex == (int)notes.Category)
-                select notes;
-                List<Note> selectedNotesByCategoryList = selectedNotesByCategory.ToList();
-                _currentNotes = selectedNotesByCategoryList;
-                for (int i = 0; i < _currentNotes.Count; ++i)
-                {
-                    noteListBox.Items.Add(_currentNotes[i].Title);
-                }
-            }
-            UpdateListView();
         }
 
         /// <summary>
@@ -322,18 +221,160 @@ namespace NoteApp.View
         /// <param name="e"></param>
         private void ExitStripElement(object sender, EventArgs e)
         {
+            ProjectManager.SaveToFile(_project, FileName);
             DialogResult result = MessageBox.Show(@"Do you really want to exit the app? ",
                                                    "Message",
                                                     MessageBoxButtons.OKCancel,
-                                                    MessageBoxIcon.Stop,
-                                                    MessageBoxDefaultButton.Button1,
-                                                    MessageBoxOptions.ServiceNotification);
+                                                    MessageBoxIcon.Stop);
             if (result == DialogResult.OK)
             {
                 Application.Exit();
             }
         }
 
+        private void mainForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            ProjectManager.SaveToFile(_project, FileName);
+            DialogResult result = MessageBox.Show(@"Do you really want to exit the app? ",
+                                                   "Message",
+                                                    MessageBoxButtons.OKCancel,
+                                                    MessageBoxIcon.Stop);
+            if (result == DialogResult.OK)
+            {
+                Application.Exit();
+            }
+        }
+
+
+        private void CategorySelector(NoteCategory selectedCategory)
+        {
+            if (categoryComboBox.SelectedItem.ToString() == "All")
+            {
+                UpdateSelectedObject(noteListBox.Items.Count - 1);
+            }
+            else
+            {
+                string parseableString = categoryComboBox.GetItemText(categoryComboBox.SelectedItem);
+                if (selectedCategory == ParseCategory(parseableString))
+                {
+                    UpdateSelectedObject(noteListBox.Items.Count - 1);
+                }
+            }
+        }
+
+        /// <summary>
+        /// Обновление списка заметок
+        /// </summary>
+        private void UpdateListView()
+        {
+            noteListBox.Items.Clear();
+            for (int i = 0; i < _currentNotes.Count; ++i)
+            {
+                noteListBox.Items.Add(_currentNotes[i].Title);
+            }
+        }
+
+        /// <summary>
+        /// Добавить случайно сгенерированную заметку
+        /// </summary>
+        private void AddRandomNote()
+        {
+            int randomTitleIndex = random.Next(testTitles.Count);
+            int randomTextIndex = random.Next(testText.Count);
+            Array values = Enum.GetValues(typeof(NoteCategory));
+            int randomCategory = random.Next(values.Length);
+            Note newNote = new Note(testTitles[randomTitleIndex], 
+                (NoteCategory)values.GetValue(randomCategory), 
+                testText[randomTextIndex]);
+            _project.Notes.Add(newNote);
+            UpdateComboBoxCategory();
+            UpdateListView();
+        }
+
+        /// <summary>
+        /// Удалить заметку
+        /// </summary>
+        private void RemoveNote()
+        {
+            int selected = noteListBox.SelectedIndex;
+            if (selected == -1)
+            {
+                return;
+            }
+            noteListBox.Items.RemoveAt(selected);
+            var removedElement = _currentNotes[selected];
+            _currentNotes.RemoveAt(selected);
+            _project.Notes.Remove(removedElement);
+            var itemCount = noteListBox.Items.Count;
+            if (itemCount > 0)
+            {
+                noteListBox.SelectedItem = noteListBox.Items[0];
+            }
+            else
+            {
+                categoryComboBox.SelectedIndex = 7;
+                UpdateComboBoxCategory();
+                noteListBox.SelectedItem = noteListBox.Items[0];
+            }
+        }
+
+        /// <summary>
+        /// Обновление правой части интерфейча при выборе заметки 
+        /// </summary>
+        /// <param name="index"></param>
+        private void UpdateSelectedObject(int index)
+        {
+            Note currentIndex = _currentNotes[index];
+            noteRichTextbox.Text = currentIndex.Text;
+            titleLabel.Text = currentIndex.Title;
+            noteCategoryLabel.Text = currentIndex.Category.ToString();
+            createdDateTimePicker.Value = currentIndex.CreationTime;
+            updatedDateTimePicker.Value = currentIndex.UpdateTime;
+        }
+
+
+        /// <summary>
+        /// Очистка правой части интерфейса
+        /// </summary>
+        private void ClearSelectedNote()
+        {
+            noteRichTextbox.Text = " ";
+            titleLabel.Text = "Note Title";
+            noteCategoryLabel.Text = " ";
+        }
+
+        /// <summary>
+        /// Обновление списка заметок при смене активной категории
+        /// </summary>
+        private void UpdateComboBoxCategory()
+        {
+            var selected = categoryComboBox.SelectedItem;
+            noteListBox.Items.Clear();
+            if (selected.ToString() == categoryAll)
+            {
+                _currentNotes = _project.Notes;
+                for (int i = 0; i < _currentNotes.Count; ++i)
+                {
+                    noteListBox.Items.Add(_currentNotes[i].Title);
+                }
+            }
+            else
+            {
+                var selectedNotesByCategory =
+                    from notes in _project.Notes
+                    where (categoryComboBox.SelectedIndex == (int)notes.Category)
+                    select notes;
+                List<Note> selectedNotesByCategoryList = selectedNotesByCategory.ToList();
+                _currentNotes = selectedNotesByCategoryList;
+                for (int i = 0; i < _currentNotes.Count; ++i)
+                {
+                    noteListBox.Items.Add(_currentNotes[i].Title);
+                }
+            }
+            UpdateListView();
+        }
+
+        //В project
         /// <summary>
         /// Сортировка ListBox по дате обновления
         /// </summary>
@@ -343,9 +384,9 @@ namespace NoteApp.View
         {
             noteListBox.Items.Clear();
             var orderedSelectedNotesByUpdateTime =
-            from notes in _project.Notes
-            orderby notes.UpdateTime descending
-            select notes;
+                from notes in _project.Notes
+                orderby notes.UpdateTime descending
+                select notes;
             List<Note> orderedSelectedNotesByUpdateTimeList = orderedSelectedNotesByUpdateTime.ToList();
             _currentNotes = orderedSelectedNotesByUpdateTimeList;
             for (int i = 0; i < _currentNotes.Count; ++i)

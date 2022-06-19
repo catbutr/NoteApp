@@ -11,7 +11,7 @@ using System.Windows.Forms;
 
 namespace NoteApp.View
 {
-    public partial class NewNoteForm : Form
+    public partial class NoteForm : Form
     {
         /// <summary>
         /// Сама заметка
@@ -39,24 +39,20 @@ namespace NoteApp.View
             }
             set
             {
-                Note _clonnedNote = value;
-                //Note _clonnedNote = new Note();
-                //_clonnedNote.Title = _note.Title;
-                //_clonnedNote.Text = _note.Text;
-                //_clonnedNote.Category = _note.Category;
-                if (_clonnedNote != null)
+                Note transferedNote = value;
+                if (transferedNote != null)
                 {
-                    noteCategoryCombobox.SelectedIndex = (int)_clonnedNote.Category;
-                    noteRichTextbox.Text = _clonnedNote.Text;
-                    noteTitleTextbox.Text = _clonnedNote.Title;
-                    noteCategoryCombobox.SelectedIndex = (int)_clonnedNote.Category;
+                    noteCategoryCombobox.SelectedIndex = (int)transferedNote.Category;
+                    noteRichTextbox.Text = transferedNote.Text;
+                    noteTitleTextbox.Text = transferedNote.Title;
+                    noteCategoryCombobox.SelectedIndex = (int)transferedNote.Category;
                 }
-                _note = _clonnedNote;
+                _note = transferedNote;
 
             }
         }
 
-        public NewNoteForm()
+        public NoteForm()
         {
             InitializeComponent();
             UpdateForm();
@@ -75,8 +71,12 @@ namespace NoteApp.View
             dateTimePickerUpdated.Value = _note.UpdateTime;
         }
 
-
-        NoteCategory ParseCategory(string parseableString)
+        /// <summary>
+        /// Перевод строку в перечисление
+        /// </summary>
+        /// <param name="parseableString"></param>
+        /// <returns></returns>
+        public NoteCategory ParseCategory(string parseableString)
         {
             return (NoteCategory)Enum.Parse(typeof(NoteCategory),
                 parseableString);
@@ -106,6 +106,7 @@ namespace NoteApp.View
             }
             else
             {
+                //Все ошибки в одном окне
                 if (_titleError == string.Empty)
                 {
                     MessageBox.Show(_titleError);
@@ -128,8 +129,8 @@ namespace NoteApp.View
         private void okButton_Click(object sender, EventArgs e)
         {
             UpdateNote();
-            DialogResult = DialogResult.OK;
             CheckFormOnErrors();
+            DialogResult = DialogResult.OK;
             Close();
         }
 
@@ -149,7 +150,7 @@ namespace NoteApp.View
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void UpdateText(object sender, EventArgs e)
+        private void noteRichTextbox_TextChanged(object sender, EventArgs e)
         {
             try
             {
@@ -162,7 +163,7 @@ namespace NoteApp.View
             {
                 _textError = exception.Message;
                 MessageBox.Show(exception.Message);
-                noteRichTextbox.BackColor = Color.HotPink;
+                noteRichTextbox.BackColor = Color.FromArgb(255, 127, 127);
                 okButton.Enabled = false;
             }
         }
@@ -172,7 +173,7 @@ namespace NoteApp.View
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void UpdateTitle(object sender, EventArgs e)
+        private void noteTitleTextbox_TextChanged(object sender, EventArgs e)
         {
             try
             {
@@ -185,7 +186,8 @@ namespace NoteApp.View
             {
                 _titleError = exception.Message;
                 MessageBox.Show(exception.Message);
-                noteTitleTextbox.BackColor = Color.HotPink;
+                //Вынести цвета в константу
+                noteTitleTextbox.BackColor = Color.FromArgb(255,127,127);
                 okButton.Enabled = false;
             }
         }

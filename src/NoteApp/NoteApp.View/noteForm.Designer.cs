@@ -1,7 +1,7 @@
 ﻿
 namespace NoteApp.View
 {
-    partial class NewNoteForm
+    partial class NoteForm
     {
         /// <summary>
         /// Required designer variable.
@@ -29,7 +29,7 @@ namespace NoteApp.View
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(NewNoteForm));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(NoteForm));
             this.dateTimePickerCreated = new System.Windows.Forms.DateTimePicker();
             this.CategoryUpdatedLabel = new System.Windows.Forms.Label();
             this.CategoryCreatedLabel = new System.Windows.Forms.Label();
@@ -98,7 +98,7 @@ namespace NoteApp.View
             this.noteTitleTextbox.Name = "noteTitleTextbox";
             this.noteTitleTextbox.Size = new System.Drawing.Size(736, 20);
             this.noteTitleTextbox.TabIndex = 12;
-            this.noteTitleTextbox.TextChanged += new System.EventHandler(this.UpdateTitle);
+            this.noteTitleTextbox.TextChanged += new System.EventHandler(this.noteTitleTextbox_TextChanged);
             // 
             // noteCategoryLabel
             // 
@@ -140,7 +140,7 @@ namespace NoteApp.View
             this.noteRichTextbox.Size = new System.Drawing.Size(787, 329);
             this.noteRichTextbox.TabIndex = 15;
             this.noteRichTextbox.Text = "";
-            this.noteRichTextbox.TextChanged += new System.EventHandler(this.UpdateText);
+            this.noteRichTextbox.TextChanged += new System.EventHandler(this.noteRichTextbox_TextChanged);
             // 
             // okButton
             // 

@@ -16,5 +16,7 @@ namespace NoteApp.Model
         /// </summary>
         public List<Note> Notes { get; set; } = new List<Note>();
 
+
+        public object Clone() => new Project();
     }
 }

@@ -11,43 +11,51 @@ namespace NoteApp.Model
     /// <summary>
     /// Представление менеджера проекта
     /// </summary>
-    public class ProjectManager
+    public static class ProjectManager
     {
-        /// <summary>
-        /// сериализированная строка
-        /// </summary>
-        private string _serialized;
+        public static string FileName { get; private set; } = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData)
+            + @"\NoteApp\NoteApp.txt";
 
-        /// <summary>
-        /// Константа пути
-        /// </summary>
-        private const string path = @"..\\My Documents\\NoteApp.notes";
-
-        /// <summary>
-        /// Конверсия значений в сериализированную строку и сохранение её в файл
-        /// </summary>
-        /// <param name="myProjects"></param>
-        public ProjectManager(Project myProjects = null)
+        public static void SaveToFile(Project project, string path)
         {
-            _serialized = JsonConvert.SerializeObject(myProjects);
-            using (FileStream fstream = new FileStream(path, FileMode.OpenOrCreate))
+            if (!Directory.Exists(Path.GetDirectoryName(path)))
             {
-                // преобразуем строку в байты
-                byte[] buffer = Encoding.Default.GetBytes(_serialized);
-                // запись массива байтов в файл
-                fstream.Write(buffer, 0, buffer.Length);
-                Console.WriteLine("Текст записан в файл");
+                Directory.CreateDirectory(Path.GetDirectoryName(path));
             }
-        }
+            JsonSerializer serializer = new JsonSerializer();
 
-        /// <summary>
-        /// Десериализация строки
-        /// </summary>
-        /// <returns></returns>
-        public Note Deserialize()
+            using (StreamWriter stream = new StreamWriter(path)) 
+            using (JsonWriter writer = new JsonTextWriter(stream))
+            {
+                serializer.Serialize(writer, project);
+            }
+
+;        }
+
+        public static Project LoadFromFile(string path)
         {
-            Note newNote = JsonConvert.DeserializeObject<Note>(_serialized);
-            return newNote;
+            Project project = new Project();
+            if (!File.Exists(path))
+            {
+                return project;
+            }
+            using (StreamReader stream =  new StreamReader(path))
+            {
+                string projectContent = stream.ReadLine();
+                if (string.IsNullOrEmpty(projectContent))
+                {
+                    return project;
+                }
+                try
+                {
+                    project = JsonConvert.DeserializeObject<Project>(projectContent);
+                }
+                catch
+                {
+                    return project;
+                }
+            }
+            return project;
         }
     }
 }

@@ -128,7 +128,7 @@ namespace NoteApp.View
             this.deleteButton.Size = new System.Drawing.Size(48, 48);
             this.deleteButton.TabIndex = 12;
             this.deleteButton.UseVisualStyleBackColor = true;
-            this.deleteButton.Click += new System.EventHandler(this.RemoveObject);
+            this.deleteButton.Click += new System.EventHandler(this.deleteButton_Click);
             // 
             // addButton
             // 
@@ -292,7 +292,7 @@ namespace NoteApp.View
             this.addStripMenuItem.Name = "addStripMenuItem";
             this.addStripMenuItem.Size = new System.Drawing.Size(146, 22);
             this.addStripMenuItem.Text = "Add Note";
-            this.addStripMenuItem.Click += new System.EventHandler(this.AddStripItem_Click);
+            this.addStripMenuItem.Click += new System.EventHandler(this.AddNoteStripItem_Click);
             // 
             // EditStripMenuItem
             // 
@@ -305,7 +305,7 @@ namespace NoteApp.View
             this.removeStripMenuItem.Name = "removeStripMenuItem";
             this.removeStripMenuItem.Size = new System.Drawing.Size(146, 22);
             this.removeStripMenuItem.Text = "Remove Note";
-            this.removeStripMenuItem.Click += new System.EventHandler(this.RemoveObject);
+            this.removeStripMenuItem.Click += new System.EventHandler(this.deleteButton_Click);
             // 
             // helpToolStripMenuItem
             // 
@@ -320,7 +320,7 @@ namespace NoteApp.View
             this.aboutStripMenuItem.Name = "aboutStripMenuItem";
             this.aboutStripMenuItem.Size = new System.Drawing.Size(107, 22);
             this.aboutStripMenuItem.Text = "About";
-            this.aboutStripMenuItem.Click += new System.EventHandler(this.AboutStripItem_Click);
+            this.aboutStripMenuItem.Click += new System.EventHandler(this.AboutNoteStripItem_Click);
             // 
             // mainForm
             // 
@@ -333,6 +333,7 @@ namespace NoteApp.View
             this.MainMenuStrip = this.mainMenuStrip;
             this.Name = "mainForm";
             this.Text = "NoteApp";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.mainForm_FormClosing);
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel2.ResumeLayout(false);
             this.splitContainer1.Panel2.PerformLayout();
