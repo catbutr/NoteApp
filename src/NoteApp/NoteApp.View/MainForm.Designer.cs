@@ -333,7 +333,7 @@ namespace NoteApp.View
             this.MainMenuStrip = this.mainMenuStrip;
             this.Name = "mainForm";
             this.Text = "NoteApp";
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.mainForm_FormClosing);
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.mainForm_FormClosed);
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel2.ResumeLayout(false);
             this.splitContainer1.Panel2.PerformLayout();

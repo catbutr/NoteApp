@@ -30,9 +30,6 @@ namespace NoteApp.View
 
         private const string categoryAll = "All";
 
-        public string FileName { get; private set; } = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData)
-    + @"\NoteApp\NoteApp.txt";
-
         /// <summary>
         /// Текст заметок для случайной генерации
         /// </summary>
@@ -44,6 +41,8 @@ namespace NoteApp.View
             " deserunt mollit anim id est laborum." };
 
         private const string AllNotes = "all";
+        public static string FileName { get; private set; } = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData)
+    + @"\NoteApp\NoteApp.txt";
 
         public NoteCategory ParseCategory(string parseableString)
         {
@@ -54,8 +53,8 @@ namespace NoteApp.View
         public mainForm()
         {
             InitializeComponent();
+            _project = ProjectManager.LoadFromFile(FileName);
             categoryComboBox.SelectedItem = "All";
-            ProjectManager.LoadFromFile(FileName);
         }
 
         /// <summary>
@@ -221,15 +220,7 @@ namespace NoteApp.View
         /// <param name="e"></param>
         private void ExitStripElement(object sender, EventArgs e)
         {
-            ProjectManager.SaveToFile(_project, FileName);
-            DialogResult result = MessageBox.Show(@"Do you really want to exit the app? ",
-                                                   "Message",
-                                                    MessageBoxButtons.OKCancel,
-                                                    MessageBoxIcon.Stop);
-            if (result == DialogResult.OK)
-            {
-                Application.Exit();
-            }
+            Application.Exit();
         }
 
         private void mainForm_FormClosing(object sender, FormClosingEventArgs e)
@@ -238,7 +229,8 @@ namespace NoteApp.View
             DialogResult result = MessageBox.Show(@"Do you really want to exit the app? ",
                                                    "Message",
                                                     MessageBoxButtons.OKCancel,
-                                                    MessageBoxIcon.Stop);
+                                                    MessageBoxIcon.Stop,
+                                                    MessageBoxDefaultButton.Button1);
             if (result == DialogResult.OK)
             {
                 Application.Exit();
@@ -395,6 +387,20 @@ namespace NoteApp.View
             }
             _project.Notes = _currentNotes;
             UpdateComboBoxCategory();
+        }
+
+        private void mainForm_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            ProjectManager.SaveToFile(_project, FileName);
+            DialogResult result = MessageBox.Show(@"Do you really want to exit the app? ",
+                                                   "Message",
+                                                    MessageBoxButtons.OKCancel,
+                                                    MessageBoxIcon.Stop,
+                                                    MessageBoxDefaultButton.Button1);
+            if (result == DialogResult.OK)
+            {
+                Application.Exit();
+            }
         }
     }
 }
